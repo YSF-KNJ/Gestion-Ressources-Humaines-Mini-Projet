@@ -19,5 +19,27 @@ public class Poste {
       }
         return false;
     }
+    public static void deletePoste(int id){
+        if (checkID(id)){
+            try {
+                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+                String Query = "DELETE FROM poste WHERE id_poste = ?;";
+                Connection conct = MySQLConnector.getConnection() ;
+                PreparedStatement stmt = conct.prepareStatement(Query);
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+                conct.close();
+                System.out.println("Poste avec l'ID "+ id +" est supprimé.");
+            }  catch (Exception e) {
+                // gestion des exceptions
+                System.out.println(e);
+            }
+            
+        }
+        else {
+            System.out.println("Poste avec l'ID "+ id +" n'existe pas.");
+        }
+        
+    }
 
 }
