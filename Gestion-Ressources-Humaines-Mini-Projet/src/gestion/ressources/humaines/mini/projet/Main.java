@@ -1,6 +1,6 @@
 class Main {
     public static void main(String[] args) {
-        Poste.deletePoste(4);
+        Poste.updatePost(20,"hhhhh");
         
     }
 }

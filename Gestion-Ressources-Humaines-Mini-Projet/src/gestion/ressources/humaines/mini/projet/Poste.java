@@ -41,5 +41,28 @@ public class Poste {
         }
         
     }
+    public static void updatePost(int id , String title){
+        if (checkID(id)){
+            try {
+                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+                String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
+                Connection conct = MySQLConnector.getConnection() ;
+                PreparedStatement stmt = conct.prepareStatement(Query);
+                stmt.setString(1, title);
+                stmt.setInt(2, id);
+                stmt.executeUpdate();
+                conct.close();
+                System.out.println("Poste avec l'ID "+ id +" a été mis à jour..");
+            }  catch (Exception e) {
+                // gestion des exceptions
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Poste avec l'ID "+ id +" n'existe pas.");
+        }
+         
+    }
+    public static void addPost(String title){}
+    public static void getPostes(){}
 
 }
