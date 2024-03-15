@@ -62,7 +62,44 @@ public class Poste {
         }
          
     }
-    public static void addPost(String title){}
-    public static void getPostes(){}
+    public static void addPost(String title){
+        try {
+                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+                String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
+                Connection conct = MySQLConnector.getConnection() ;
+                PreparedStatement stmt = conct.prepareStatement(Query);
+                stmt.setString(1, title);
+                stmt.executeUpdate();
+                conct.close();
+                System.out.println("Ajoutée");
+            }  catch (Exception e) {
+                // gestion des exceptions
+                System.out.println(e);
+            }
+    }
+    public static void getPostes(){
+        try {
+         Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+         String Query = "SELECT * FROM poste";
+         Connection conct = MySQLConnector.getConnection() ;
+         PreparedStatement stmt = conct.prepareStatement(Query);
+         ResultSet resultSet = stmt.executeQuery();
+         ResultSetMetaData metaData = resultSet.getMetaData();
+         int columnCount = metaData.getColumnCount();
+         // Printing data
+         while (resultSet.next()) {
+             for (int i = 1; i <= columnCount; i++) {
+                 System.out.print(resultSet.getString(i) + "  ");
+             }
+                System.out.println();
+            }
+         conct.close();
+      }  catch (Exception e) {
+         // gestion des exceptions
+         System.out.println(e);
+      }
+    
+    
+    }
 
 }
