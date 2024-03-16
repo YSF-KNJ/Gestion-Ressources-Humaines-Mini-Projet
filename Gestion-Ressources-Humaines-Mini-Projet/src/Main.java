@@ -1,8 +1,14 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         char choix;
         
         do {
@@ -84,20 +90,30 @@ public class Main {
                                 break;
                             case 'b':
                                 System.out.print("Titre de Poste : ");
-                                String title1 = scanner.next();
+                                String title1 = reader.readLine();
                                 Poste.addPost(title1);
                                 break;
                             case 'c':
-                                System.out.print("ID de Poste :");
-                                int id1 = scanner.nextInt();
-                                Poste.deletePoste(id1);
+                                try {
+                                    System.out.print("ID de Poste :");
+                                    int id1 = scanner.nextInt();
+                                    Poste.deletePoste(id1);
+                                } catch(InputMismatchException e) {
+                                    System.out.println("type a valid id");
+                                }
+                                
                                 break;
                             case 'd':
-                                System.out.print("ID de Poste :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("Titre de Poste : ");
-                                String title2 = scanner.next();
-                                Poste.updatePost(id2, title2);
+                                try {
+                                    System.out.print("ID de Poste :");
+                                    int id2 = scanner.nextInt();
+                                    System.out.print("Titre de Poste : ");
+                                    String title2 = reader.readLine();
+                                    Poste.updatePost(id2, title2);
+                                } catch (InputMismatchException e) {
+                                    System.out.println("type a valid id");
+
+                                }
                                 break;
                             default:
                                 
@@ -125,24 +141,32 @@ public class Main {
                                 break;
                             case 'b':
                                 System.out.print("adresse de Localisation : ");
-                                String adresse1 = scanner.next();
+                                String adresse1 = reader.readLine();
                                 System.out.print("ville de Localisation : ");
-                                String ville1 = scanner.next();
+                                String ville1 = reader.readLine();
                                 Localisation.addLocalisation(adresse1,ville1);
                                 break;
                             case 'c':
-                                System.out.print("ID de Localisation :");
-                                int id1 = scanner.nextInt();
-                                Localisation.deleteLocalisation(id1);
+                                try {
+                                    System.out.print("ID de Localisation :");
+                                    int id1 = scanner.nextInt();
+                                    Localisation.deleteLocalisation(id1);
+                                } catch(InputMismatchException e){
+                                    System.out.println("type a valid id");
+                                }
                                 break;
                             case 'd':
-                                System.out.print("ID de Localisation :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("adresse de Localisation : ");
-                                String adresse2 = scanner.next();
-                                System.out.print("ville de Localisation : ");
-                                String ville2 = scanner.next();
-                                Localisation.updateLocalisation(id2, adresse2,ville2);
+                                try {
+                                    System.out.print("ID de Localisation :");
+                                    int id2 = scanner.nextInt();
+                                    System.out.print("adresse de Localisation : ");
+                                    String adresse2 = reader.readLine();
+                                    System.out.print("ville de Localisation : ");
+                                    String ville2 = reader.readLine();
+                                    Localisation.updateLocalisation(id2, adresse2,ville2);
+                                } catch(InputMismatchException e){
+                                    System.out.println("type a valid id");
+                                }
                                 break;
                             default:
                                 
