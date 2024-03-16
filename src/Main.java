@@ -1,20 +1,26 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         char choix;
         
         do {
             System.out.println("Menu Principal:");
             System.out.println("\n");
-            System.out.println("1. Gerer les Employes");
-            System.out.println("2. Gerer les Departements");
-            System.out.println("3. Gerer les Postes");
-            System.out.println("4. Gerer les Localisations");
+            System.out.println("1. Gérer les Employés");
+            System.out.println("2. Gérer les Départements");
+            System.out.println("3. Gérer les Postes");
+            System.out.println("4. Gérer les Localisations");
             System.out.println("5. Quitter");
             System.out.println("\n");
-            System.out.print("Veuillez selectionner une option: ");
+            System.out.print("Veuillez sélectionner une option: ");
             choix = scanner.next().charAt(0);
 
             
@@ -22,149 +28,37 @@ public class Main {
                 case '1':
                     do {
                         System.out.println("\n");
-                        System.out.println("a. Voir tous les employes");
-                        System.out.println("b. Ajouter un nouvel employe");
-                        System.out.println("c. Rechercher un employe");
-                        System.out.println("d. Mettre à jour les informations sur un employe");
-                        System.out.println("e. Supprimer un employe");
-                        System.out.println("f. Augmenter le salaire d'un employe");
-                        System.out.println("g. Quitte r");
+                        System.out.println("a. Voir tous les employés");
+                        System.out.println("b. Ajouter un nouvel employé");
+                        System.out.println("c. Rechercher un employé");
+                        System.out.println("d. Mettre à jour les informations sur un employé");
+                        System.out.println("e. Supprimer un employé");
+                        System.out.println("f. Augmenter le salaire d'un employé");
+                        System.out.println("g. Quitter");
                         System.out.println("\n");
-                        System.out.print("Veuillez selectionner une option: ");
+                        System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
-                         switch (choix) {
+                        switch (choix) {
                             case 'a':
-                                Employe.getEmployes();
+                                System.out.println("dir chi l3baa");
                                 break;
-                            case 'b':
-                                System.out.print("Premon de l'employe : ");
-                                String prenom1 = scanner.next();
-                                System.out.print("Nom de l'employe: ");
-                                String nom1 = scanner.next();
-                                System.out.print("Email de l'employe : ");
-                                String email1 = scanner.next();
-                                System.out.print("Telephone de l'employe : ");
-                                String telephone1 = scanner.next();
-                                System.out.print("salaire de l'employe : ");
-                                double salaire1 = scanner.nextInt();
-                                int id_poste1;
-                                do {
-                                   System.out.print("ID poster de l'employe : ");
-                                   id_poste1 = scanner.nextInt();
-                                   if (!Poste.checkID(id_poste1)) {
-                                         System.out.println("Le poste avec cet ID"+id_poste1+" n'existe pas.");
-                                   } else {
-                                    break; 
-                                   }
-                                } while (true);
-                                System.out.print("Id departement de l'employe : ");
-                                int id_departement1 = scanner.nextInt();
-                                /*int id_departement1;
-                                do {
-                                   System.out.print("ID  departement de l'employe : ");
-                                   id_departement1 = scanner.nextInt();
-                                   if (!Departement.checkID(id_departement1)) {
-                                         System.out.println("Le departement avec cet ID "+id_departement1+"n'existe pas.");
-                                   } else {
-                                    break; 
-                                   }
-                                } while (true);*/
-                                int id_manager1;
-                                do {
-                                   System.out.print("ID du manager de l'employe : ");
-                                   id_manager1 = scanner.nextInt();
-                                   if (!Employe.checkID(id_manager1)) {
-                                         System.out.println("Le manager avec cet ID"+id_manager1+" n'existe pas. ");
-                                   } else {
-                                    break; 
-                                   }
-                                 } while (true);
-                                Employe.addEmploye(prenom1 , nom1 , email1 ,telephone1 , salaire1 , id_poste1 , id_departement1 , id_manager1);
-                                break;
-                                        
-                            case 'c':
-                                System.out.print("ID de l'employe :");
-                                int id1 = scanner.nextInt();
-                                Employe.searchEmploye(id1);
-                                break;
-                            case 'd':
-                                System.out.print("ID de l'employe :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("Premon de l'employe : ");
-                                String prenom2 = scanner.next();
-                                System.out.print("Nom de l'employe : ");
-                                String nom2 = scanner.next();
-                                System.out.print("Email de l'employe : ");
-                                String email2 = scanner.next();
-                                System.out.print("Telephone de l'employe : ");
-                                String telephone2 = scanner.next();
-                                System.out.print("salaire de l'employe : ");
-                                double salaire2 = scanner.nextInt();
-                                int id_poste2;
-                                do {
-                                   System.out.print("ID poster de l'employé : ");
-                                   id_poste2 = scanner.nextInt();
-                                   if (!Poste.checkID(id_poste2)) {
-                                         System.out.println("Le poste avec cet ID "+id_poste2+"n'existe pas.");
-                                   } else {
-                                    break; 
-                                   }
-                                } while (true);
-                                System.out.print("Id departement de l'employe : ");
-                                int id_departement2 = scanner.nextInt();
-                                /*int id_departement2;
-                                do {
-                                   System.out.print("ID  departement de l'employe : ");
-                                   id_departement2 = scanner.nextInt();
-                                   if (!Departement.checkID(id_departement2)) {
-                                         System.out.println("Le departement avec cet ID"+id_departement2+" n'existe pas.");
-                                   } else {
-                                    break; 
-                                   }
-                                } while (true);*/
-                                int id_manager2;
-                                do {
-                                   System.out.print("ID du manager de l'employe : ");
-                                   id_manager2 = scanner.nextInt();
-                                   if (!Employe.checkID(id_manager2)) {
-                                         System.out.println("Le manager avec cet ID"+id_manager2+" n'existe pas. ");
-                                   } else {
-                                    break; 
-                                   }
-                                } while (true);
-                                Employe.updateEmploye(id2, prenom2 , nom2 , email2 ,telephone2 , salaire2 , id_poste2 , id_departement2 , id_manager2);
-                                break;
-                            case 'e':
-                                System.out.print("ID de l'employe :");
-                                int id3 = scanner.nextInt();
-                                Employe.deleteEmploye(id3 );
-                                break;  
-                            case 'f':
-                                System.out.print("ID de l'employe :");
-                                int id4 = scanner.nextInt();
-                                System.out.print("Le montant pour augmenter le salaire de l'employe: ");
-                                double amount1 = scanner.nextInt();
-                                Employe.increaseSalary(id4 , amount1);
-                                break;    
                             default:
-                                
                                 System.out.println("Option invalide.");}
                                 
                         
-                    
                     } while (choix != 'g');
                     break;
                 case '2':
                     do {
                         System.out.println("\n");
-                        System.out.println("a. Afficher la liste des departements");
-                        System.out.println("b. Ajouter un nouveau departement");
+                        System.out.println("a. Afficher la liste des départements");
+                        System.out.println("b. Ajouter un nouveau département");
                         System.out.println("c. Supprimer un département");
-                        System.out.println("d. Mettre à jour les informations sur un departement");
+                        System.out.println("d. Mettre à jour les informations sur un département");
                         System.out.println("e. Quitter");
                         System.out.println("\n");
-                        System.out.print("Veuillez selectionner une option: ");
+                        System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
                         switch (choix) {
@@ -187,7 +81,7 @@ public class Main {
                         System.out.println("d. Mettre à jour les informations sur un poste");
                         System.out.println("e. Quitter");
 			System.out.println("\n");
-                        System.out.print("Veuillez selectionner une option: ");
+                        System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
                         switch (choix) {
@@ -196,20 +90,30 @@ public class Main {
                                 break;
                             case 'b':
                                 System.out.print("Titre de Poste : ");
-                                String title1 = scanner.next();
+                                String title1 = reader.readLine();
                                 Poste.addPost(title1);
                                 break;
                             case 'c':
-                                System.out.print("ID de Poste :");
-                                int id1 = scanner.nextInt();
-                                Poste.deletePoste(id1);
+                                try {
+                                    System.out.print("ID de Poste :");
+                                    int id1 = scanner.nextInt();
+                                    Poste.deletePoste(id1);
+                                } catch(InputMismatchException e) {
+                                    System.out.println("type a valid id");
+                                }
+                                
                                 break;
                             case 'd':
-                                System.out.print("ID de Poste :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("Titre de Poste : ");
-                                String title2 = scanner.next();
-                                Poste.updatePost(id2, title2);
+                                try {
+                                    System.out.print("ID de Poste :");
+                                    int id2 = scanner.nextInt();
+                                    System.out.print("Titre de Poste : ");
+                                    String title2 = reader.readLine();
+                                    Poste.updatePost(id2, title2);
+                                } catch (InputMismatchException e) {
+                                    System.out.println("type a valid id");
+
+                                }
                                 break;
                             default:
                                 
@@ -228,7 +132,7 @@ public class Main {
                         System.out.println("d. Mettre à jour les informations sur un Localisation");
                         System.out.println("e. Quitter");
 			System.out.println("\n");
-                        System.out.print("Veuillez selectionner une option: ");
+                        System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
                         switch (choix) {
@@ -237,24 +141,32 @@ public class Main {
                                 break;
                             case 'b':
                                 System.out.print("adresse de Localisation : ");
-                                String adresse1 = scanner.next();
+                                String adresse1 = reader.readLine();
                                 System.out.print("ville de Localisation : ");
-                                String ville1 = scanner.next();
+                                String ville1 = reader.readLine();
                                 Localisation.addLocalisation(adresse1,ville1);
                                 break;
                             case 'c':
-                                System.out.print("ID de Localisation :");
-                                int id1 = scanner.nextInt();
-                                Localisation.deleteLocalisation(id1);
+                                try {
+                                    System.out.print("ID de Localisation :");
+                                    int id1 = scanner.nextInt();
+                                    Localisation.deleteLocalisation(id1);
+                                } catch(InputMismatchException e){
+                                    System.out.println("type a valid id");
+                                }
                                 break;
                             case 'd':
-                                System.out.print("ID de Localisation :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("adresse de Localisation : ");
-                                String adresse2 = scanner.next();
-                                System.out.print("ville de Localisation : ");
-                                String ville2 = scanner.next();
-                                Localisation.updateLocalisation(id2, adresse2,ville2);
+                                try {
+                                    System.out.print("ID de Localisation :");
+                                    int id2 = scanner.nextInt();
+                                    System.out.print("adresse de Localisation : ");
+                                    String adresse2 = reader.readLine();
+                                    System.out.print("ville de Localisation : ");
+                                    String ville2 = reader.readLine();
+                                    Localisation.updateLocalisation(id2, adresse2,ville2);
+                                } catch(InputMismatchException e){
+                                    System.out.println("type a valid id");
+                                }
                                 break;
                             default:
                                 
@@ -264,7 +176,7 @@ public class Main {
                     } while (choix != 'e');
                     break;
                 case '5':
-                    System.out.println("Programme termine.");
+                    System.out.println("Programme terminé.");
                     break;
                 default:
                     System.out.println("Option invalide.");

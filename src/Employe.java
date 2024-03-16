@@ -153,8 +153,6 @@ public class Employe {
             System.out.println("L'Employe avec l'ID "+ id +" n'existe pas.");
         }
     }
-    
-
 }
 
 

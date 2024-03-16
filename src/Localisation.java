@@ -110,5 +110,4 @@ public class Localisation {
                 System.out.println(e);
             }
     }
-          
 }
