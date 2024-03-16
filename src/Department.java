@@ -7,6 +7,6 @@
  *
  * @author Ouassima
  */
-public class departement {
+public class Department {
     
 }
