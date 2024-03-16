@@ -13,7 +13,7 @@ public class Poste {
                 return count > 0;
             }
          conct.close();
-      }  catch (Exception e) {
+      }  catch (ClassNotFoundException | SQLException e) {
          // gestion des exceptions
          System.out.println(e);
       }
@@ -30,7 +30,7 @@ public class Poste {
                 stmt.executeUpdate();
                 conct.close();
                 System.out.println("Poste avec l'ID "+ id +" est supprimé.");
-            }  catch (Exception e) {
+            }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
             }
@@ -53,7 +53,7 @@ public class Poste {
                 stmt.executeUpdate();
                 conct.close();
                 System.out.println("Poste avec l'ID "+ id +" a été mis à jour..");
-            }  catch (Exception e) {
+            }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
             }
@@ -62,7 +62,7 @@ public class Poste {
         }
          
     }
-    public static void addPost(String title){
+    public static void addPost(String title) {
         try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
                 String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
@@ -72,7 +72,7 @@ public class Poste {
                 stmt.executeUpdate();
                 conct.close();
                 System.out.println("Ajoutée");
-            }  catch (Exception e) {
+            }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
             }
@@ -94,7 +94,7 @@ public class Poste {
                 System.out.println();
             }
          conct.close();
-      }  catch (Exception e) {
+      }  catch (ClassNotFoundException | SQLException e) {
          // gestion des exceptions
          System.out.println(e);
       }
