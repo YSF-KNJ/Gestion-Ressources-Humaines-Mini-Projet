@@ -110,25 +110,46 @@ public class Main {
                 case '4':
                     do {
                         System.out.println("\n");
-                        System.out.println("a. Afficher la liste des localisations");
-                        System.out.println("b. Ajouter une nouvelle localisation");
-                        System.out.println("c. Supprimer une localisation");
-                        System.out.println("d. Mettre à jour les informations sur une localisation");
+                        System.out.println("a. Afficher la liste des Localisations");
+                        System.out.println("b. Ajouter un nouveau Localisation");
+                        System.out.println("c. Supprimer un Localisation");
+                        System.out.println("d. Mettre à jour les informations sur un Localisation");
                         System.out.println("e. Quitter");
-                        System.out.println("\n");
+			System.out.println("\n");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
                         switch (choix) {
                             case 'a':
-                                System.out.println("dir chi l3baa");
+                                Localisation.getLocalisations();
+                                break;
+                            case 'b':
+                                System.out.print("adresse de Localisation : ");
+                                String adresse1 = scanner.next();
+                                System.out.print("ville de Localisation : ");
+                                String ville1 = scanner.next();
+                                Localisation.addLocalisation(adresse1,ville1);
+                                break;
+                            case 'c':
+                                System.out.print("ID de Localisation :");
+                                int id1 = scanner.nextInt();
+                                Localisation.deleteLocalisation(id1);
+                                break;
+                            case 'd':
+                                System.out.print("ID de Localisation :");
+                                int id2 = scanner.nextInt();
+                                System.out.print("adresse de Localisation : ");
+                                String adresse2 = scanner.next();
+                                System.out.print("ville de Localisation : ");
+                                String ville2 = scanner.next();
+                                Localisation.updateLocalisation(id2, adresse2,ville2);
                                 break;
                             default:
+                                
                                 System.out.println("Option invalide.");}
                                 
                         
                     } while (choix != 'e');
-
                     break;
                 case '5':
                     System.out.println("Programme terminé.");
