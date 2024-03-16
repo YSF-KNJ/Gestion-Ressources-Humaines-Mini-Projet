@@ -73,16 +73,34 @@ public class Main {
                         System.out.println("b. Ajouter un nouveau poste");
                         System.out.println("c. Supprimer un poste");
                         System.out.println("d. Mettre à jour les informations sur un poste");
-                        System.out.println("\n");
                         System.out.println("e. Quitter");
+			System.out.println("\n");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         
                         switch (choix) {
                             case 'a':
-                                System.out.println("dir chi l3baa");
+                                Poste.getPostes();
+                                break;
+                            case 'b':
+                                System.out.print("Titre de Poste : ");
+                                String title1 = scanner.next();
+                                Poste.addPost(title1);
+                                break;
+                            case 'c':
+                                System.out.print("ID de Poste :");
+                                int id1 = scanner.nextInt();
+                                Poste.deletePoste(id1);
+                                break;
+                            case 'd':
+                                System.out.print("ID de Poste :");
+                                int id2 = scanner.nextInt();
+                                System.out.print("Titre de Poste : ");
+                                String title2 = scanner.next();
+                                Poste.updatePost(id2, title2);
                                 break;
                             default:
+                                
                                 System.out.println("Option invalide.");}
                                 
                         
@@ -96,8 +114,8 @@ public class Main {
                         System.out.println("b. Ajouter une nouvelle localisation");
                         System.out.println("c. Supprimer une localisation");
                         System.out.println("d. Mettre à jour les informations sur une localisation");
-                        System.out.println("\n");
                         System.out.println("e. Quitter");
+                        System.out.println("\n");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         

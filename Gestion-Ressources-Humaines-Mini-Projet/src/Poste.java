@@ -48,11 +48,11 @@ public class Poste {
                 String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
                 Connection conct = MySQLConnector.getConnection() ;
                 PreparedStatement stmt = conct.prepareStatement(Query);
-                stmt.setString(1, title);
+                stmt.setString(1, title.trim().toUpperCase());
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
                 conct.close();
-                System.out.println("Poste avec l'ID "+ id +" a été mis à jour..");
+                System.out.print("Poste avec l'ID "+ id +" a été mis à jour..");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
@@ -68,10 +68,10 @@ public class Poste {
                 String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
                 Connection conct = MySQLConnector.getConnection() ;
                 PreparedStatement stmt = conct.prepareStatement(Query);
-                stmt.setString(1, title);
+                stmt.setString(1,title.trim().toUpperCase());
                 stmt.executeUpdate();
                 conct.close();
-                System.out.println("Ajoutée");
+                System.out.print("Ajoutée");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
