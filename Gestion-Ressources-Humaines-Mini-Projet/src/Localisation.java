@@ -25,7 +25,6 @@ public class Localisation {
         return false;
     }
         public static void deleteLocalisation(int id){
-        if (checkID(id)){
             try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
                 String Query = "DELETE FROM localisation WHERE id_localisation = ?;";
@@ -39,11 +38,6 @@ public class Localisation {
                 // gestion des exceptions
                 System.out.println(e);
             }
-            
-        }
-        else {
-            System.out.println("Localisation avec l'ID "+ id +" n'existe pas.");
-        }
         
     }
         public static void getLocalisations(){
@@ -71,7 +65,6 @@ public class Localisation {
     
     }
         public static void updateLocalisation(int id , String adresse, String ville){
-        if (checkID(id)){
             try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
                 String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_poste = ?";
@@ -82,15 +75,11 @@ public class Localisation {
                 stmt.setInt(3, id);
                 stmt.executeUpdate();
                 conct.close();
-                System.out.print("Localisation avec l'ID "+ id +" a été mis à jour..");
+                System.out.println("Localisation avec l'ID "+ id +" a été mis à jour..");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
-            }
-        } else {
-            System.out.println("Localisation avec l'ID "+ id +" n'existe pas.");
-        }
-         
+            }     
     }
         public static void addLocalisation(String adresse, String ville) {
         try {
@@ -104,7 +93,7 @@ public class Localisation {
 
                 stmt.executeUpdate();
                 conct.close();
-                System.out.print("Ajoutée");
+                System.out.println("Localisation Ajoutée");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
