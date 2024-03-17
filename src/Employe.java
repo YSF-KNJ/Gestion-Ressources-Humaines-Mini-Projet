@@ -39,23 +39,27 @@ public class Employe {
              System.out.println(e);
         }
     }
+    public static void addManger(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement){
+    }
     public static void addEmploye(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager){
         try {
-                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
-                String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";;
-                Connection conct = MySQLConnector.getConnection() ;
-                PreparedStatement stmt = conct.prepareStatement(Query);
-                stmt.setString(1, prenom);
-                stmt.setString(2, nom);
-                stmt.setString(3, email);
-                stmt.setString(4, telephone);
-                stmt.setDouble(5, salaire);
-                stmt.setInt(6, id_poste );
-                stmt.setInt(7, id_departement);
-                stmt.setInt(8, id_manager);
-                stmt.executeUpdate();
-                conct.close();
-                System.out.println("L'employe a ete ajoute.");
+            
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+            String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";;
+            Connection conct = MySQLConnector.getConnection() ;
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            stmt.setString(1, prenom);
+            stmt.setString(2, nom);
+            stmt.setString(3, email);
+            stmt.setString(4, telephone);
+            stmt.setDouble(5, salaire);
+            stmt.setInt(6, id_poste );
+            stmt.setInt(7, id_departement);
+            stmt.setInt(8, id_manager);
+            stmt.executeUpdate();
+            conct.close();
+            System.out.println("L'employe a ete ajoute.");
+                
             } catch (ClassNotFoundException | SQLException e) {
              System.out.println(e);
              }
@@ -114,26 +118,60 @@ public class Employe {
         }
          
     }
-    public static void deleteEmploye(int id){
-        if (checkID(id)){
+    public static boolean isManager(int id) {
+        try {
+            String query = "SELECT COUNT(*) AS count FROM employes WHERE id_manager = ?";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println( e.getMessage());
+        }
+        return false;
+    } 
+    public static void replaceManager(int newManagerId, int oldManagerId) {
+
+        if (checkID(newManagerId)) {
             try {
-                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+               String query = "UPDATE employes SET id_manager = ? WHERE id_manager = ?";
+               Connection conct = MySQLConnector.getConnection();
+               PreparedStatement stmt =conct.prepareStatement(query);
+               stmt.setInt(1, newManagerId);
+               stmt.setInt(2, oldManagerId);
+               stmt.executeUpdate();
+               conct.close();
+               System.out.println("Remplacement reussi de manager ID " + oldManagerId +" par manager ID " + newManagerId + ".");
+               deleteEmploye(oldManagerId);
+            } catch (SQLException e) {
+              System.out.println( e.getMessage());
+            }
+        } else {
+           System.out.println("Le nouveau manager avec l'ID " + newManagerId + "n'existe pas.");
+        }
+    }
+    public static void deleteEmploye(int id) {
+        if (checkID(id)) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 String Query = "DELETE FROM employes WHERE id_employe = ?;";
-                Connection conct = MySQLConnector.getConnection() ;
+                Connection conct = MySQLConnector.getConnection();
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 conct.close();
-                System.out.println("l'employe avec l'ID "+ id +" est supprime.");
+                System.out.println("L'employe avec l'ID "+ id +" est supprime.");
             } catch (ClassNotFoundException | SQLException e) {
-             System.out.println(e);
+                System.out.println(e);
             }
-            
+        } else {
+            System.out.println("L'employe avec l'ID " + id + " n'existe pas.");      
         }
-        else {
-            System.out.println("l'employe avec l'ID "+ id +" n'existe pas.");
-        }
-        
     }
     public static void increaseSalary(int id, double amount) {
         if (checkID(id)){
@@ -154,6 +192,5 @@ public class Employe {
         }
     }
 }
-
 
 
