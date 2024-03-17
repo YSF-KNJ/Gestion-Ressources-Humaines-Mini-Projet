@@ -42,28 +42,6 @@ public class Employe {
         }
     }
 
-    public static void getManagers() {
-        try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "SELECT * FROM employes WHERE id_employe IN (SELECT id_manager FROM employes)";
-            Connection conct = MySQLConnector.getConnection();
-            PreparedStatement stmt = conct.prepareStatement(Query);
-            ResultSet resultSet = stmt.executeQuery();
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            // Printing data
-            while (resultSet.next()) {
-                for (int i = 1; i <= columnCount; i++) {
-                    System.out.print(resultSet.getString(i) + "  ");
-                }
-                System.out.println();
-            }
-            conct.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
-        }
-    }
-
     public static void addManger(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
