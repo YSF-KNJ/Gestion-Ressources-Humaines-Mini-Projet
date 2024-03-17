@@ -4,7 +4,7 @@ public class Departement {
     public static boolean checkID(int id) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "SELECT COUNT(*) AS count FROM Department WHERE id_departement = ?";
+            String Query = "SELECT COUNT(*) AS count FROM departement WHERE id_departement = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
@@ -47,7 +47,7 @@ public class Departement {
         if (checkID(id)) {
             try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-                String Query = "UPDATE  Departement SET nom_departement = ? , id_localisation = ? WHERE id_departement = ?";
+                String Query = "UPDATE  departement SET nom_departement = ? , id_localisation = ? WHERE id_departement = ?";
                 Connection conct = MySQLConnector.getConnection();
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setString(1, nom_Departement);
@@ -106,6 +106,23 @@ public class Departement {
         }
 
 
+    }
+
+    public static void replaceDepartements(int oldId, int newId) {
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "UPDATE employes SET id_departement = ? WHERE id_departement = ?";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            stmt.setInt(1, newId);
+            stmt.setInt(2, oldId);
+            stmt.executeUpdate();
+            conct.close();
+            System.out.println("les departements sont remplacés");
+        } catch (ClassNotFoundException | SQLException e) {
+            // gestion des exceptions
+            System.out.println(e);
+        }
     }
 
 }
