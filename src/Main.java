@@ -27,31 +27,167 @@ public class Main {
             switch (choix) {
                 case '1':
                     do {
-                        System.out.println("************************");
-                        System.out.println("a. Voir tous les employés");
-                        System.out.println("b. Ajouter un nouvel employé");
-                        System.out.println("c. Rechercher un employé");
-                        System.out.println("d. Mettre à jour les informations sur un employé");
-                        System.out.println("e. Supprimer un employé");
-                        System.out.println("f. Augmenter le salaire d'un employé");
-                        System.out.println("g. Quitter");
-                        System.out.print("Veuillez sélectionner une option: ");
-                        choix = scanner.next().charAt(0);
                         System.out.println("\n");
-
+                        System.out.println("a. Voir tous les manager");
+                        System.out.println("b. Voir tous les employes");
+                        System.out.println("c. Ajouter un nouvel manager");
+                        System.out.println("d. Ajouter un nouvel employe");
+                        System.out.println("e. Rechercher un employe");
+                        System.out.println("f. Mettre a jour les informations sur un employe");
+                        System.out.println("g. Supprimer un employe");
+                        System.out.println("h. Augmenter le salaire d'un employe");
+                        System.out.println("i. Quitte r");
+                        System.out.println("\n");
+                        System.out.print("Veuillez selectionner une option: ");
+                        choix = scanner.next().charAt(0);
 
                         switch (choix) {
                             case 'a':
-                                System.out.println("dir chi l3baa");
+                                Employe.getManagers();
+                                break;
+                            case 'b':
+                                Employe.getEmployes();
+                                break;
+                            case 'c':
+                                System.out.print("Premon de l'employe : ");
+                                String prenom1 = reader.readLine();
+                                System.out.print("Nom de l'employe: ");
+                                String nom1 = reader.readLine();
+                                System.out.print("Email de l'employe : ");
+                                String email1 = reader.readLine();
+                                System.out.print("Telephone de l'employe : ");
+                                String telephone1 = reader.readLine();
+                                System.out.print("salaire de l'employe : ");
+                                int salaire1 = scanner.nextInt();
+                                System.out.print("Poste ID de l'employe :");
+                                int id_poste1 = scanner.nextInt();
+                                System.out.print("Departement ID de l'employe :");
+                                int id_departement1 = scanner.nextInt();
+                                if (Poste.checkID(id_poste1) && Departement.checkID(id_departement1)) {
+                                    Employe.addManger(prenom1, nom1, email1, telephone1, salaire1, id_poste1, id_departement1);
+                                    System.out.println("Le manager a ete ajoute.");
+                                } else if (!Poste.checkID(id_poste1)) {
+                                    System.out.println("L'employe n'a pas ete ajoute car  poste ID " + id_poste1 + " n'existe pas.");
+                                } else if (!Departement.checkID(id_departement1)) {
+                                    System.out.println("L'employe n'a pas ete ajoute car departement ID " + id_departement1 + " n'existe pas.");
+                                }
+
+                                break;
+
+                            case 'd':
+                                System.out.print("Premon de l'employe : ");
+                                String prenom2 = reader.readLine();
+                                System.out.print("Nom de l'employe: ");
+                                String nom2 = reader.readLine();
+                                System.out.print("Email de l'employe : ");
+                                String email2 = reader.readLine();
+                                System.out.print("Telephone de l'employe : ");
+                                String telephone2 = reader.readLine();
+                                System.out.print("salaire de l'employe : ");
+                                int salaire2 = scanner.nextInt();
+                                System.out.print("Poste ID de l'employe :");
+                                int id_poste2 = scanner.nextInt();
+                                System.out.print("Departement ID de l'employe :");
+                                int id_departement2 = scanner.nextInt();
+                                System.out.print("Manager ID de l'employe :");
+                                int id_manager2 = scanner.nextInt();
+                                if (Poste.checkID(id_poste2) && Employe.checkID(id_manager2) && Departement.checkID(id_departement2)) {
+                                    Employe.addEmploye(prenom2, nom2, email2, telephone2, salaire2, id_poste2, id_departement2, id_manager2);
+                                    System.out.println("L'employe a ete ajoute.");
+                                } else if (!Poste.checkID(id_poste2)) {
+                                    System.out.println("L'employe n'a pas ete ajoute car  poste ID " + id_poste2 + " n'existe pas.");
+                                } else if (!Departement.checkID(id_departement2)) {
+                                    System.out.println("L'employe n'a pas ete ajoute car departement ID " + id_departement2 + " n'existe pas.");
+                                } else if (!Employe.checkID(id_manager2)) {
+                                    System.out.println("L'employe n'a pas ete ajoute car manager ID " + id_manager2 + " n'existe pas.");
+                                }
+                                break;
+                            case 'e':
+                                System.out.print("ID de l'employe :");
+                                int id1 = scanner.nextInt();
+                                if (Employe.checkID(id1)) {
+                                    System.out.println("Employe trouve :");
+                                    Employe.searchEmploye(id1);
+                                } else {
+                                    System.out.println("L'employe avec l'ID " + id1 + " est introuvable.");
+                                }
+                                break;
+                            case 'f':
+                                System.out.print("ID de l'employe :");
+                                int id2 = scanner.nextInt();
+                                if (Employe.checkID(id2)) {
+                                    System.out.print("Premon de l'employe : ");
+                                    String prenom3 = scanner.next();
+                                    System.out.print("Nom de l'employe : ");
+                                    String nom3 = reader.readLine();
+                                    System.out.print("Email de l'employe : ");
+                                    String email3 = reader.readLine();
+                                    System.out.print("Telephone de l'employe : ");
+                                    String telephone3 = reader.readLine();
+                                    System.out.print("salaire de l'employe : ");
+                                    int salaire3 = scanner.nextInt();
+                                    System.out.print("Poste ID de l'employe :");
+                                    int id_poste3 = scanner.nextInt();
+                                    System.out.print("Departement ID de l'employe :");
+                                    int id_departement3 = scanner.nextInt();
+                                    System.out.print("Manager ID de l'employe :");
+                                    int id_manager3 = scanner.nextInt();
+                                    if (Poste.checkID(id_poste3) && Departement.checkID(id_departement3) && Employe.checkID(id_manager3)) {
+                                        Employe.updateEmploye(id2, prenom3, nom3, email3, telephone3, salaire3, id_poste3, id_departement3, id_manager3);
+                                        System.out.println("Les informations de l'employe avec id " + id2 + " ont ete mises a jour avec succes");
+                                    } else if (!Poste.checkID(id_poste3)) {
+                                        System.out.println("La mise a jour de l'employe n'a pas ete effectuee car   poste ID " + id_poste3 + " n'existe pas.");
+                                    } else if (!Departement.checkID(id_departement3)) {
+                                        System.out.println("La mise a jour de l'employe n'a pas ete effectuee departement ID " + id_departement3 + " n'existe pas.");
+                                    } else if (!Employe.checkID(id_manager3)) {
+                                        System.out.println("La mise a jour de l'employe n'a pas ete effectuee car manager ID " + id_manager3 + " n'existe pas.");
+                                    }
+                                } else {
+                                    System.out.println("L'employe avec ID " + id2 + " n'existe pas.");
+                                }
                                 break;
                             case 'g':
+                                System.out.print("ID de l'employe : ");
+                                int old_id = scanner.nextInt();
+                                if (Employe.checkID(old_id)) {
+                                    if (Employe.isManager(old_id)) {
+                                        System.out.println("L'employe avec ID " + old_id + " est un manager.");
+                                        System.out.print("ID manager pour les employes ayant  ID manager que vous souhaitez supprimer:");
+                                        int new_id = scanner.nextInt();
+                                        if (Employe.checkID(new_id)) {
+                                            Employe.replaceManager(new_id, old_id);
+                                            System.out.println("Remplacement reussi de manager ID " + old_id + " par manager ID " + new_id + ".");
+                                            System.out.println("Le manager avec l'ID " + old_id + " est supprime.");
+                                        } else {
+                                            System.out.println("Le nouvel manager avec ID " + new_id + " n'existe pas.");
+                                        }
+                                    } else {
+                                        Employe.deleteEmploye(old_id);
+                                        System.out.println("Membre avec l'ID " + old_id + " est supprime.");
+                                    }
+                                } else {
+                                    System.out.println("L'employe avec ID " + old_id + " n'existe pas.");
+                                }
+                                break;
+                            case 'h':
+                                System.out.print("ID de l'employe :");
+                                int id3 = scanner.nextInt();
+                                if (Employe.checkID(id3)) {
+                                    System.out.print("Le montant pour augmenter le salaire de l'employe: ");
+                                    int amount = scanner.nextInt();
+                                    Employe.increaseSalary(id3, amount);
+                                    System.out.println("Le salaire de l'employe avec l'ID " + id3 + " a ete augmente.");
+                                } else {
+                                    System.out.println("L'Employe avec l'ID " + id3 + " n'existe pas.");
+                                }
                                 break;
                             default:
+
                                 System.out.println("Option invalide.");
                         }
 
 
-                    } while (choix != 'g');
+                    } while (choix != 'i');
                     break;
                 case '2':
                     do {
