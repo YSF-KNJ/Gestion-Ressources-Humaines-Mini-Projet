@@ -20,29 +20,23 @@ public class Poste {
         return false;
     }
     public static void deletePoste(int id){
-        if (checkID(id)){
-            try {
-                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
-                String Query = "DELETE FROM poste WHERE id_poste = ?;";
-                Connection conct = MySQLConnector.getConnection() ;
-                PreparedStatement stmt = conct.prepareStatement(Query);
-                stmt.setInt(1, id);
-                stmt.executeUpdate();
-                conct.close();
-                System.out.println("Poste avec l'ID "+ id +" est supprimé.");
-            }  catch (ClassNotFoundException | SQLException e) {
-                // gestion des exceptions
-                System.out.println(e);
-            }
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+            String Query = "DELETE FROM poste WHERE id_poste = ?;";
+            Connection conct = MySQLConnector.getConnection() ;
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            conct.close();
+            System.out.println("Poste avec l'ID "+ id +" est supprimé.");
+        }  catch (ClassNotFoundException | SQLException e) {
+            // gestion des exceptions
+            System.out.println(e);
             
-        }
-        else {
-            System.out.println("Poste avec l'ID "+ id +" n'existe pas.");
         }
         
     }
     public static void updatePost(int id , String title){
-        if (checkID(id)){
             try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
                 String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
@@ -52,15 +46,11 @@ public class Poste {
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
                 conct.close();
-                System.out.print("Poste avec l'ID "+ id +" a été mis à jour..");
+                System.out.println("Poste avec l'ID "+ id +" a été mis à jour..");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
             }
-        } else {
-            System.out.println("Poste avec l'ID "+ id +" n'existe pas.");
-        }
-         
     }
     public static void addPost(String title) {
         try {
@@ -71,7 +61,7 @@ public class Poste {
                 stmt.setString(1,title.trim().toUpperCase());
                 stmt.executeUpdate();
                 conct.close();
-                System.out.print("Ajoutée");
+                System.out.println("Poste Ajoutée");
             }  catch (ClassNotFoundException | SQLException e) {
                 // gestion des exceptions
                 System.out.println(e);
