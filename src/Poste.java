@@ -21,7 +21,8 @@ public class Poste {
         return false;
     }
     public static void deletePoste(int id){
-        try {
+            try {
+                
             Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
             String Query = "DELETE FROM poste WHERE id_poste = ?;";
             Connection conct = MySQLConnector.getConnection() ;
@@ -32,13 +33,12 @@ public class Poste {
             System.out.println("Poste avec l'ID "+ id +" est supprimé.");
         }  catch (ClassNotFoundException | SQLException e) {
             // gestion des exceptions
-            System.out.println(e);
-            
+            System.out.println(e);    
         }
         
     }
     public static void updatePost(int id , String title){
-            try {
+                try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
                 String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
                 Connection conct = MySQLConnector.getConnection() ;
@@ -52,6 +52,7 @@ public class Poste {
                 // gestion des exceptions
                 System.out.println(e);
             }
+
     }
     public static void addPost(String title) {
         try {
@@ -91,5 +92,21 @@ public class Poste {
       }
     
     
+    }
+    public static void replacePost(int oldId , int newId){
+            try {
+                Class c = Class.forName("com.mysql.cj.jdbc.Driver") ;
+                String Query = "UPDATE employes SET id_employe = ? WHERE id_employe = ?";
+                Connection conct = MySQLConnector.getConnection() ;
+                PreparedStatement stmt = conct.prepareStatement(Query);
+                stmt.setInt(1, newId);
+                stmt.setInt(2, oldId);
+                stmt.executeUpdate();
+                conct.close();
+                System.out.println("les postes sont remplacés");
+            }  catch (ClassNotFoundException | SQLException e) {
+                // gestion des exceptions
+                System.out.println(e);
+            }
     }
 }
