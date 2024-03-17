@@ -72,7 +72,7 @@ public class Departement {
             String Query = "INSERT INTO departement (nom_Departement,id_localisation) VALUES (? , ? );";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
-            stmt.setString(1, nom_Departement);
+            stmt.setString(1, nom_Departement.trim().toUpperCase());
             stmt.setInt(2, id_localisation);
             stmt.executeUpdate();
             conct.close();
@@ -124,7 +124,7 @@ public class Departement {
             System.out.println(e);
         }
     }
-    
+
     public static boolean isDepartmentOccupied(int id) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");

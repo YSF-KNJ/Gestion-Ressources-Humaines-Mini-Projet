@@ -159,13 +159,13 @@ public class Main {
                                         System.out.println("Veuillez fournir l'identifiant du nouveau poste, les employés du post à supprimer seront transférés vers celui-ci :");
                                         int idPostNew = scanner.nextInt();
                                         if (Poste.checkID(idPostNew)) {
-                                            Departement.replaceDepartements(idPostDel, idPostNew);
-                                            Departement.deleteDepartement(idPostDel);
+                                            Poste.replacePosts(idPostDel, idPostNew);
+                                            Poste.deletePoste(idPostDel);
                                         } else {
                                             System.out.println("new post id makynchii");
                                         }
                                     } else {
-                                        Departement.deleteDepartement(idPostDel);
+                                        Poste.deletePoste(idPostDel);
                                     }
 
                                 } else {
@@ -175,7 +175,7 @@ public class Main {
                             case 'd':
                                 System.out.print("ID de Poste :");
                                 int idPostUpd = scanner.nextInt();
-                                if(Poste.checkID(idPostUpd)){
+                                if (Poste.checkID(idPostUpd)) {
                                     System.out.print("Titre de Poste : ");
                                     String titrePostUpd = reader.readLine();
                                     Poste.updatePost(idPostUpd, titrePostUpd);
@@ -220,17 +220,37 @@ public class Main {
                                 break;
                             case 'c':
                                 System.out.print("ID de Localisation :");
-                                int id1 = scanner.nextInt();
-                                Localisation.deleteLocalisation(id1);
+                                int idLocDel = scanner.nextInt();
+                                if (Localisation.checkID(idLocDel)) {
+                                    if (Localisation.isLocalisationOccupied(idLocDel)) {
+                                        System.out.println("Veuillez fournir l'identifiant du nouveau localisation, les departement du localisation à supprimer seront transférés vers celui-ci :");
+                                        int idLocNew = scanner.nextInt();
+                                        if (Localisation.checkID(idLocNew)) {
+                                            Localisation.replaceLocalisations(idLocDel, idLocNew);
+                                            Localisation.deleteLocalisation(idLocDel);
+                                        } else {
+                                            System.out.println("new post id makynchii");
+                                        }
+                                    } else {
+                                        Localisation.deleteLocalisation(idLocDel);
+                                    }
+
+                                } else {
+                                    System.out.println("id post makynchii");
+                                }
                                 break;
                             case 'd':
                                 System.out.print("ID de Localisation :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("adresse de Localisation : ");
-                                String adresse2 = reader.readLine();
-                                System.out.print("ville de Localisation : ");
-                                String ville2 = reader.readLine();
-                                Localisation.updateLocalisation(id2, adresse2, ville2);
+                                int idLocUpd = scanner.nextInt();
+                                if (Localisation.checkID(idLocUpd)) {
+                                    System.out.print("adresse de Localisation : ");
+                                    String adresseUpd = reader.readLine();
+                                    System.out.print("ville de Localisation : ");
+                                    String villeUpd = reader.readLine();
+                                    Localisation.updateLocalisation(idLocUpd, adresseUpd, villeUpd);
+                                } else {
+                                    System.out.println("id localisation makynachii a bro");
+                                }
                                 break;
                             case 'e':
                                 break;

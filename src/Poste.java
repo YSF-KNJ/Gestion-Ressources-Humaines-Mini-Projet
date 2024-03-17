@@ -114,11 +114,11 @@ public class Poste {
             System.out.println(e);
         }
     }
-    
+
     public static boolean isPosteOccupied(int id) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "SELECT COUNT(*) AS count FROM poste WHERE id_poste = ?";
+            String Query = "SELECT COUNT(*) AS count FROM employes WHERE id_poste = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
