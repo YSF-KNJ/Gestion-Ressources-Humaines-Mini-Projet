@@ -1,4 +1,5 @@
 import java.sql.* ;
+// new hadchi
 public class Poste {
     public static boolean checkID(int id) {
         try {
