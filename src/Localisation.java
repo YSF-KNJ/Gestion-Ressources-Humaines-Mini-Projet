@@ -4,7 +4,7 @@ public class Localisation {
     public static boolean checkID(int id) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "SELECT COUNT(*) AS count FROM localisation WHERE id_poste = ?";
+            String Query = "SELECT COUNT(*) AS count FROM localisation WHERE id_localisation = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
@@ -66,7 +66,7 @@ public class Localisation {
     public static void updateLocalisation(int id, String adresse, String ville) {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_poste = ?";
+            String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_localisation = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
