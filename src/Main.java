@@ -174,10 +174,14 @@ public class Main {
                                 break;
                             case 'd':
                                 System.out.print("ID de Poste :");
-                                int id2 = scanner.nextInt();
-                                System.out.print("Titre de Poste : ");
-                                String title2 = reader.readLine();
-                                Poste.updatePost(id2, title2);
+                                int idPostUpd = scanner.nextInt();
+                                if(Poste.checkID(idPostUpd)){
+                                    System.out.print("Titre de Poste : ");
+                                    String titrePostUpd = reader.readLine();
+                                    Poste.updatePost(idPostUpd, titrePostUpd);
+                                } else {
+                                    System.out.println("id post makynchii");
+                                }
                                 break;
                             case 'e':
                                 break;
