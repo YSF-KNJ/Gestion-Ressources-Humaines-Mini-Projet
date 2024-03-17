@@ -25,7 +25,7 @@ public class Departement {
         if (checkID(id)) {
             try {
                 Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-                String Query = "DELETE FROM Departement WHERE id_departement = ?;";
+                String Query = "DELETE FROM departement WHERE id_departement = ?;";
                 Connection conct = MySQLConnector.getConnection();
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setInt(1, id);
@@ -86,7 +86,7 @@ public class Departement {
     public static void getDepartement() {
         try {
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
-            String Query = "SELECT * FROM Departement";
+            String Query = "SELECT * FROM departement";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             ResultSet resultSet = stmt.executeQuery();
