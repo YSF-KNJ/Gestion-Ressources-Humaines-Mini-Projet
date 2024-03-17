@@ -27,28 +27,25 @@ public class Main {
             switch (choix) {
                 case '1':
                     do {
-                        System.out.println("\n");
-                        System.out.println("a. Voir tous les manager");
-                        System.out.println("b. Voir tous les employes");
-                        System.out.println("c. Ajouter un nouvel manager");
-                        System.out.println("d. Ajouter un nouvel employe");
-                        System.out.println("e. Rechercher un employe");
-                        System.out.println("f. Mettre a jour les informations sur un employe");
-                        System.out.println("g. Supprimer un employe");
-                        System.out.println("h. Augmenter le salaire d'un employe");
-                        System.out.println("i. Quitte r");
-                        System.out.println("\n");
+                        System.out.println("************************");
+                        System.out.println("a. Voir tous les employes");
+                        System.out.println("b. Ajouter un nouvel manager");
+                        System.out.println("c. Ajouter un nouvel employe");
+                        System.out.println("d. Rechercher un employe");
+                        System.out.println("e. Mettre a jour les informations sur un employe");
+                        System.out.println("f. Supprimer un employe");
+                        System.out.println("g. Augmenter le salaire d'un employe");
+                        System.out.println("h. Quitte r");
                         System.out.print("Veuillez selectionner une option: ");
                         choix = scanner.next().charAt(0);
+                        System.out.println("\n");
+
 
                         switch (choix) {
                             case 'a':
-                                Employe.getManagers();
-                                break;
-                            case 'b':
                                 Employe.getEmployes();
                                 break;
-                            case 'c':
+                            case 'b':
                                 System.out.print("Premon de l'employe : ");
                                 String prenom1 = reader.readLine();
                                 System.out.print("Nom de l'employe: ");
@@ -74,7 +71,7 @@ public class Main {
 
                                 break;
 
-                            case 'd':
+                            case 'c':
                                 System.out.print("Premon de l'employe : ");
                                 String prenom2 = reader.readLine();
                                 System.out.print("Nom de l'employe: ");
@@ -102,7 +99,7 @@ public class Main {
                                     System.out.println("L'employe n'a pas ete ajoute car manager ID " + id_manager2 + " n'existe pas.");
                                 }
                                 break;
-                            case 'e':
+                            case 'd':
                                 System.out.print("ID de l'employe :");
                                 int id1 = scanner.nextInt();
                                 if (Employe.checkID(id1)) {
@@ -112,7 +109,7 @@ public class Main {
                                     System.out.println("L'employe avec l'ID " + id1 + " est introuvable.");
                                 }
                                 break;
-                            case 'f':
+                            case 'e':
                                 System.out.print("ID de l'employe :");
                                 int id2 = scanner.nextInt();
                                 if (Employe.checkID(id2)) {
@@ -146,7 +143,7 @@ public class Main {
                                     System.out.println("L'employe avec ID " + id2 + " n'existe pas.");
                                 }
                                 break;
-                            case 'g':
+                            case 'f':
                                 System.out.print("ID de l'employe : ");
                                 int old_id = scanner.nextInt();
                                 if (Employe.checkID(old_id)) {
@@ -169,7 +166,7 @@ public class Main {
                                     System.out.println("L'employe avec ID " + old_id + " n'existe pas.");
                                 }
                                 break;
-                            case 'h':
+                            case 'g':
                                 System.out.print("ID de l'employe :");
                                 int id3 = scanner.nextInt();
                                 if (Employe.checkID(id3)) {
@@ -182,12 +179,11 @@ public class Main {
                                 }
                                 break;
                             default:
-
                                 System.out.println("Option invalide.");
                         }
 
 
-                    } while (choix != 'i');
+                    } while (choix != 'h');
                     break;
                 case '2':
                     do {
