@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    Createdb.createdb();
     public static void main(String[] args) throws IOException {
-        System.setProperty("file.encoding", "UTF-8");
+        Createdb.createdb();
+        Createtables.createtables();
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -30,7 +30,7 @@ public class Main {
                     do {
                         System.out.println("************************");
                         System.out.println("a. Voir tous les employes");
-                        System.out.println("b. Ajouter un nouvel manager");
+                        System.out.println("b. Ajouter un nouvel employe sans manger");
                         System.out.println("c. Ajouter un nouvel employe");
                         System.out.println("d. Rechercher un employe");
                         System.out.println("e. Mettre a jour les informations sur un employe");
@@ -210,7 +210,7 @@ public class Main {
                                 if (Localisation.checkID(idLocAdd)) {
                                     Departement.addDepartement(nomDep, idLocAdd);
                                 } else {
-                                    System.out.println("id localisation makynchii");
+                                    System.out.println("ID de localisation n'existe pas");
                                 }
 
                                 break;
@@ -225,13 +225,13 @@ public class Main {
                                             Departement.replaceDepartements(idDepDel, idDepNew);
                                             Departement.deleteDepartement(idDepDel);
                                         } else {
-                                            System.out.println("new id makynchii");
+                                            System.out.println("Le nouvel ID n'existe pas");
                                         }
                                     } else {
                                         Departement.deleteDepartement(idDepDel);
                                     }
                                 } else {
-                                    System.out.println("id makynchii");
+                                    System.out.println("ID de departement n'existe pas");
                                 }
                                 break;
                             case 'd':
@@ -245,11 +245,11 @@ public class Main {
                                     if (Departement.checkID(idLocUpd)) {
                                         Departement.updateDepartement(idDepUpd, nomDepUpd, idLocUpd);
                                     } else {
-                                        System.out.println("id localisation makynchi");
+                                        System.out.println("ID de localisation n'existe pas");
                                     }
 
                                 } else {
-                                    System.out.println("id departement makynchii");
+                                    System.out.println("ID de departement n'existe pas");
                                 }
                                 break;
                             case 'e':
@@ -295,14 +295,14 @@ public class Main {
                                             Poste.replacePosts(idPostDel, idPostNew);
                                             Poste.deletePoste(idPostDel);
                                         } else {
-                                            System.out.println("new post id makynchii");
+                                            System.out.println("Le nouvel ID n'existe pas");
                                         }
                                     } else {
                                         Poste.deletePoste(idPostDel);
                                     }
 
                                 } else {
-                                    System.out.println("id post makynchii");
+                                    System.out.println("ID de poste n'existe pas");
                                 }
                                 break;
                             case 'd':
@@ -313,7 +313,7 @@ public class Main {
                                     String titrePostUpd = reader.readLine();
                                     Poste.updatePost(idPostUpd, titrePostUpd);
                                 } else {
-                                    System.out.println("id post makynchii");
+                                    System.out.println("ID de poste n'existe pas");
                                 }
                                 break;
                             case 'e':
@@ -362,14 +362,14 @@ public class Main {
                                             Localisation.replaceLocalisations(idLocDel, idLocNew);
                                             Localisation.deleteLocalisation(idLocDel);
                                         } else {
-                                            System.out.println("new post id makynchii");
+                                            System.out.println("Le nouvel ID n'existe pas");
                                         }
                                     } else {
                                         Localisation.deleteLocalisation(idLocDel);
                                     }
 
                                 } else {
-                                    System.out.println("id post makynchii");
+                                    System.out.println("ID de Localisation n'existe pas");
                                 }
                                 break;
                             case 'd':
@@ -382,7 +382,7 @@ public class Main {
                                     String villeUpd = reader.readLine();
                                     Localisation.updateLocalisation(idLocUpd, adresseUpd, villeUpd);
                                 } else {
-                                    System.out.println("id localisation makynachii a bro");
+                                    System.out.println("ID de localisation n'existe pas");
                                 }
                                 break;
                             case 'e':
