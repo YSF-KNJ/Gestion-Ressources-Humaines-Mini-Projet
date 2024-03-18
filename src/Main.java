@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+    Createdb.createdb();
     public static void main(String[] args) throws IOException {
         System.setProperty("file.encoding", "UTF-8");
         Scanner scanner = new Scanner(System.in);
