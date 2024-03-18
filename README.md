@@ -16,7 +16,7 @@ Ce projet est réalisé dans le cadre du mini-projet 1 pour le cours de Architec
    - Le fichier `DDL.txt` contient les requêtes SQL pour créer la base de données ainsi que les tables avec les contraintes référentielles. Des exemples d'insertions d'enregistrements sont également inclus.
 
 3. **Projet Java Application**:
-   - Le dossier `Gestion-Ressources-Humaines-Mini-Projet` comprend le projet entier de l'application Java en mode Console. 
+   - Le dossier `src` comprend le projet entier de l'application Java en mode Console. 
 
 ## Instructions pour exécuter l'application
 
