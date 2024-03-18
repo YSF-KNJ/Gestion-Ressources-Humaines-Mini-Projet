@@ -8,7 +8,7 @@ public class Createdb {
     private static final String port = "3306";  // port MySQL par défaut
     private static final String conString = protocole + "//" + ip + ":" + port;
     private static final String nomConnexion = "root";  // dépend du contexte
-    private static final String motDePasse = "root";  // dépend du contexte
+    private static final String motDePasse = "FSTet.23";  // dépend du contexte
     public static void createdb(){
         try {
             Connection conct = DriverManager.getConnection(conString, nomConnexion, motDePasse);
