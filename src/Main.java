@@ -15,11 +15,12 @@ public class Main {
         do {
             System.out.println("Menu Principal:");
             System.out.println("--------------");
-            System.out.println("1. Gérer les Employés");
-            System.out.println("2. Gérer les Départements");
-            System.out.println("3. Gérer les Postes");
-            System.out.println("4. Gérer les Localisations");
-            System.out.println("5. Quitter");
+            System.out.println("1. insérer cinq pseudo-valeurs pour tester le programme");
+            System.out.println("2. Gérer les Employés");
+            System.out.println("3. Gérer les Départements");
+            System.out.println("4. Gérer les Postes");
+            System.out.println("5. Gérer les Localisations");
+            System.out.println("6. Quitter");
             System.out.print("Veuillez sélectionner une option: ");
             choix = scanner.next().charAt(0);
             System.out.println("\n");
@@ -27,6 +28,10 @@ public class Main {
 
             switch (choix) {
                 case '1':
+                    InsertValues.insert();
+                    System.out.println("inséré avec succès");
+                    break;
+                case '2':
                     do {
                         System.out.println("************************");
                         System.out.println("a. Voir tous les employes");
@@ -186,7 +191,7 @@ public class Main {
 
                     } while (choix != 'h');
                     break;
-                case '2':
+                case '3':
                     do {
                         System.out.println("************************");
                         System.out.println("a. Afficher la liste des départements");
@@ -262,7 +267,7 @@ public class Main {
                     } while (choix != 'e');
 
                     break;
-                case '3':
+                case '4':
                     do {
                         System.out.println("************************");
                         System.out.println("a. Afficher la liste des postes");
@@ -327,7 +332,7 @@ public class Main {
                     } while (choix != 'e');
 
                     break;
-                case '4':
+                case '5':
                     do {
                         System.out.println("************************");
                         System.out.println("a. Afficher la liste des Localisations");
@@ -394,14 +399,14 @@ public class Main {
 
                     } while (choix != 'e');
                     break;
-                case '5':
+                case '6':
                     System.out.println("Programme terminé.");
-                    break;
+                    break;    
                 default:
                     System.out.println("Option invalide.");
             }
 
-        } while (choix != '5');
+        } while (choix != '6');
 
         scanner.close();
     }
