@@ -1,4 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Poste {
     public static boolean checkID(int id) {
@@ -133,6 +137,36 @@ public class Poste {
             System.out.println(e);
         }
         return false;
+    }
+    
+    public static void addFromFile(FileInputStream file){
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                addPost(line.trim());
+        }
+        System.out.println("done");
+    }
+    
+    public static void exportFile(String fileName){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM poste";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                String line = resultSet.getString("titre_poste");
+                writer.write(line);
+                writer.newLine(); 
+                
+            }
+            writer.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
     }
 
 }
