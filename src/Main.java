@@ -12,7 +12,6 @@ public class Main {
         Createtables.createtables();
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        
         System.out.print("login : ");
         String login = reader.readLine();
         login.replace("'", "\"");
