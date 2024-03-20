@@ -1,4 +1,6 @@
+import java.io.FileInputStream;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Localisation {
     public static boolean checkID(int id) {
@@ -135,6 +137,18 @@ public class Localisation {
             System.out.println(e);
         }
         return false;
+    }
+    
+    public static void addFromFile(FileInputStream file){
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                String adresse = parts[0];
+                String ville = parts[1];
+                addLocalisation(adresse,ville);
+        }
+        System.out.println("done");
     }
 
 }
