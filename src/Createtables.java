@@ -8,6 +8,13 @@ public class Createtables {
             Connection conct = MySQLConnector.getConnection();
             Statement stmt = conct.createStatement();
             
+            String createAdminTable = "CREATE TABLE IF NOT EXISTS admin ("
+                    + "id_admin INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
+                    + "login VARCHAR(50) NOT NULL UNIQUE,"
+                    + "password VARCHAR(255) NOT NULL"
+                    + ")";
+            stmt.executeUpdate(createAdminTable);
+            
             String createPosteTable = "CREATE TABLE IF NOT EXISTS poste ("
                     + "id_poste INT NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                     + "titre_poste VARCHAR(255)"
