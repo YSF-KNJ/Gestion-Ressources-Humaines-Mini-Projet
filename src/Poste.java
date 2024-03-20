@@ -150,7 +150,7 @@ public class Poste {
     
     public static void exportFile(String fileName){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));        
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM poste";
             Connection conct = MySQLConnector.getConnection();

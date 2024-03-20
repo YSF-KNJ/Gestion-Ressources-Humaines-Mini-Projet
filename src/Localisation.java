@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -150,5 +152,27 @@ public class Localisation {
         }
         System.out.println("done");
     }
+    
+    public static void exportFile(String fileName){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM localisation";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                String line = resultSet.getString("adresse") + ", " + resultSet.getString("ville");
+                writer.write(line);
+                writer.newLine(); 
+                
+            }
+            writer.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+    }
+
 
 }

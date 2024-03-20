@@ -330,7 +330,7 @@ public class Menu {
                                 System.out.print("file name :");
                                 String fileName = reader.readLine();
                                 try {
-                                    File file = new File(fileName);
+                                    File file = new File(fileName+".txt");
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Poste.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
@@ -361,7 +361,8 @@ public class Menu {
                         System.out.println("c. Supprimer un Localisation");
                         System.out.println("d. Mettre à jour les informations sur un Localisation");
                         System.out.println("e. add localisations from txt file");
-                        System.out.println("f. Quitter");
+                        System.out.println("f. export txt");
+                        System.out.println("g. Quitter");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         System.out.println("\n");
@@ -416,7 +417,7 @@ public class Menu {
                                 System.out.print("file name :");
                                 String fileName = reader.readLine();
                                 try {
-                                    File file = new File(fileName);
+                                    File file = new File(fileName+".txt");
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Localisation.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
@@ -424,13 +425,18 @@ public class Menu {
                                 }
                                 break;
                             case 'f':
+                                System.out.print("file name :");
+                                String fName = reader.readLine();
+                                Localisation.exportFile(fName);
+                                break;
+                            case 'g':
                                 break;
                             default:
                                 System.out.println("Option invalide.");
                         }
 
 
-                    } while (choix != 'f');
+                    } while (choix != 'g');
                     break;
                 case '6':
                     System.out.println("Programme terminé.");
