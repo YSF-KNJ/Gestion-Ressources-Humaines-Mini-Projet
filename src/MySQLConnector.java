@@ -7,7 +7,7 @@ public class MySQLConnector {
     private static final String nomBase = "HR";  // dépend du contexte
     private static final String conString = protocole + "//" + ip + ":" + port + "/" + nomBase;
     private static final String nomConnexion = "root";  // dépend du contexte
-    private static final String motDePasse = "FSTet.23";  // dépend du contexte
+    private static final String motDePasse = "root";  // dépend du contexte
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(conString, nomConnexion, motDePasse);
