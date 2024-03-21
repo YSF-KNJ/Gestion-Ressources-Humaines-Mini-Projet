@@ -279,7 +279,8 @@ public class Menu {
                         System.out.println("d. Mettre à jour les informations sur un poste");
                         System.out.println("e. add posts from file");
                         System.out.println("f. export file");
-                        System.out.println("g. Quitter");
+                        System.out.println("g. export xls");
+                        System.out.println("h. Quitter");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
                         System.out.println("\n");
@@ -339,10 +340,15 @@ public class Menu {
                                 break;
                             case 'f':
                                 System.out.print("file name :");
-                                String fName = reader.readLine();
-                                Poste.exportFile(fName);
+                                String fileNameTxt = reader.readLine();
+                                Poste.exportFileTxt(fileNameTxt);
                                 break;
                             case 'g':
+                                System.out.print("file name :");
+                                String fileNameXls = reader.readLine();
+                                Poste.exportFileXls(fileNameXls);
+                                break;
+                            case 'h':
                                 break;
                             default:
 
@@ -350,7 +356,7 @@ public class Menu {
                         }
 
 
-                    } while (choix != 'g');
+                    } while (choix != 'h');
 
                     break;
                 case '5':

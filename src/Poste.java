@@ -1,8 +1,11 @@
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.sql.*;
 import java.util.Scanner;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Poste {
     public static boolean checkID(int id) {
@@ -148,7 +151,7 @@ public class Poste {
         System.out.println("done");
     }
     
-    public static void exportFile(String fileName){
+    public static void exportFileTxt(String fileName){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
@@ -168,5 +171,34 @@ public class Poste {
                 System.out.println(e);
             }
     }
+    
+    public static void exportFileXls(String fileName){
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM poste";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Postes");
+            int rowNum = 0;
+            while (resultSet.next()) {
+                Row row = sheet.createRow(rowNum++);
+                Cell cell = row.createCell(0);  // Assuming you want to write to the first column (index 0)
+                cell.setCellValue(resultSet.getString("titre_poste"));
+            }
+            
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim()+".xls");
+            workbook.write(fileOut);
+            fileOut.close();
+            workbook.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+        
+        
+    }
+
 
 }
