@@ -1,4 +1,15 @@
+import static Localisation.addLocalisation;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.sql.*;
+import java.util.Scanner;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Departement {
     public static boolean checkID(int id) {
@@ -143,6 +154,71 @@ public class Departement {
             System.out.println(e);
         }
         return false;
+    }
+    
+    public static void addFromFile(FileInputStream file){
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                String nom_departement = parts[0];
+                int id_localisation = Integer.parseInt(parts[1]);
+                addDepartement(nom_departement,id_localisation);
+        }
+        System.out.println("done");
+    }
+    
+    public static void exportFileTxt(String fileName){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM departement";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                String line = resultSet.getString("nom_departement") + ", " + resultSet.getString("id_localisation");
+                writer.write(line);
+                writer.newLine(); 
+                
+            }
+            writer.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+    }
+    
+    public static void exportFileXls(String fileName){
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM departement";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Departements");
+            int rowNum = 0;
+            while (resultSet.next()) {
+                Row row = sheet.createRow(rowNum++);
+                Cell cell0 = row.createCell(0);
+                cell0.setCellValue(resultSet.getString("nom_departement"));
+                Cell cell1 = row.createCell(1);
+                cell1.setCellValue(resultSet.getString("id_localisation"));
+
+
+            }
+            
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim()+".xls");
+            workbook.write(fileOut);
+            fileOut.close();
+            workbook.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+        
+        
     }
 
 }

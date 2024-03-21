@@ -1,8 +1,14 @@
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.sql.*;
 import java.util.Scanner;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Localisation {
     public static boolean checkID(int id) {
@@ -153,7 +159,7 @@ public class Localisation {
         System.out.println("done");
     }
     
-    public static void exportFile(String fileName){
+    public static void exportFileTxt(String fileName){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
             Class c = Class.forName("com.mysql.cj.jdbc.Driver");
@@ -173,6 +179,37 @@ public class Localisation {
                 System.out.println(e);
             }
     }
+    
+    public static void exportFileXls(String fileName){
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM localisation";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Localisations");
+            int rowNum = 0;
+            while (resultSet.next()) {
+                Row row = sheet.createRow(rowNum++);
+                Cell cell0 = row.createCell(0);
+                cell0.setCellValue(resultSet.getString("adresse"));
+                Cell cell1 = row.createCell(1);
+                cell1.setCellValue(resultSet.getString("ville"));
 
+
+            }
+            
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim()+".xls");
+            workbook.write(fileOut);
+            fileOut.close();
+            workbook.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+        
+        
+    }
 
 }
