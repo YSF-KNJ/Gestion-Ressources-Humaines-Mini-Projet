@@ -1,4 +1,14 @@
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.sql.*;
+import java.util.Scanner;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Employe {
     public static boolean checkID(int id) {
@@ -196,5 +206,89 @@ public class Employe {
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+    }
+    
+    public static void addFromFile(FileInputStream file){
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                String prenom  = parts[0];
+                String nom  = parts[1];
+                String email  = parts[2];
+                String telephone = parts[3];
+                int salaire = Integer.parseInt(parts[4]);
+                int id_poste = Integer.parseInt(parts[5]);
+                int id_departement = Integer.parseInt(parts[6]);
+                int id_manager = Integer.parseInt(parts[6]);
+                addEmploye(prenom,nom,email,telephone,salaire,id_poste,id_departement,id_manager);
+                
+        }
+        System.out.println("done");
+    }
+    
+    public static void exportFileTxt(String fileName){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));        
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM employes";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                String line = resultSet.getString("prenom") + ", " + resultSet.getString("nom")+ ", " +resultSet.getString("email")+ ", " +resultSet.getString("telephone")+ ", " +resultSet.getString("salaire")+ ", " +resultSet.getString("id_poste")+ ", " +resultSet.getString("id_departement")+ ", " +resultSet.getString("id_manager");
+                writer.write(line);
+                writer.newLine(); 
+                
+            }
+            writer.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+    }
+    
+    public static void exportFileXls(String fileName){
+        try {
+            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            String Query = "SELECT * FROM employes";
+            Connection conct = MySQLConnector.getConnection();
+            PreparedStatement stmt = conct.prepareStatement(Query);
+            ResultSet resultSet = stmt.executeQuery();
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Employes");
+            int rowNum = 0;
+            while (resultSet.next()) {
+                Row row = sheet.createRow(rowNum++);
+                Cell cell0 = row.createCell(0);
+                cell0.setCellValue(resultSet.getString("prenom"));
+                Cell cell1 = row.createCell(1);
+                cell1.setCellValue(resultSet.getString("nom"));
+                Cell cell2 = row.createCell(2);
+                cell2.setCellValue(resultSet.getString("email"));
+                Cell cell3 = row.createCell(3);
+                cell3.setCellValue(resultSet.getString("telephone"));
+                Cell cell4 = row.createCell(4);
+                cell4.setCellValue(resultSet.getString("salaire"));
+                Cell cell5 = row.createCell(5);
+                cell5.setCellValue(resultSet.getString("id_poste"));
+                Cell cell6 = row.createCell(6);
+                cell6.setCellValue(resultSet.getString("id_departement"));
+                Cell cell7 = row.createCell(7);
+                cell7.setCellValue(resultSet.getString("id_manager"));
+
+
+            }
+            
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim()+".xls");
+            workbook.write(fileOut);
+            fileOut.close();
+            workbook.close();
+            conct.close();
+            } catch(Exception e){
+                System.out.println(e);
+            }
+        
+        
     }
 }

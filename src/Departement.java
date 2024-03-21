@@ -1,4 +1,3 @@
-import static Localisation.addLocalisation;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

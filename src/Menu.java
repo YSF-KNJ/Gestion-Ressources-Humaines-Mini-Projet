@@ -433,7 +433,7 @@ public class Menu {
                             case 'f':
                                 System.out.print("file name :");
                                 String fName = reader.readLine();
-                                Localisation.exportFile(fName);
+                                Localisation.exportFileTxt(fName);
                                 break;
                             case 'g':
                                 break;
