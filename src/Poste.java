@@ -33,6 +33,7 @@ public class Poste {
         try {
             String Query = "DELETE FROM poste WHERE id_poste = ?;";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -56,6 +57,7 @@ public class Poste {
         try {
             String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, title.trim().toUpperCase());
             stmt.setInt(2, id);
@@ -79,6 +81,7 @@ public class Poste {
         try {
             String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, title.trim().toUpperCase());
             stmt.executeUpdate();
@@ -126,6 +129,7 @@ public class Poste {
         try {
             String Query = "UPDATE employes SET id_poste = ? WHERE id_poste = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, newId);
             stmt.setInt(2, oldId);

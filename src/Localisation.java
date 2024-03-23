@@ -36,6 +36,7 @@ public class Localisation {
         try {
             String Query = "DELETE FROM localisation WHERE id_localisation = ?;";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -85,6 +86,7 @@ public class Localisation {
 
             String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_localisation = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
             stmt.setString(2, ville.trim().toUpperCase());
@@ -108,6 +110,7 @@ public class Localisation {
         try {
             String Query = "INSERT INTO localisation (adresse, ville) VALUES (?, ?);";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
             stmt.setString(2, ville.trim().toUpperCase());
@@ -131,6 +134,7 @@ public class Localisation {
         try {
             String Query = "UPDATE departement SET id_localisation = ? WHERE id_localisation = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, newId);
             stmt.setInt(2, oldId);

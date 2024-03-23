@@ -53,10 +53,11 @@ public class Employe {
     }
 
     public static void addManger(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, prenom);
             stmt.setString(2, nom);
@@ -66,9 +67,16 @@ public class Employe {
             stmt.setInt(6, id_poste);
             stmt.setInt(7, id_departement);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                    try {
+                        conct.rollback(); 
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
         }
     }
 
@@ -78,6 +86,7 @@ public class Employe {
             String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             ;
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, prenom);
             stmt.setString(2, nom);
@@ -132,6 +141,7 @@ public class Employe {
             try {
                 String Query = "UPDATE employes SET prenom = ?, nom = ?, email = ?, telephone = ?, salaire = ?, id_poste = ?, id_departement = ?, id_manager = ? WHERE id_employe = ?";
                 conct = MySQLConnector.getConnection();
+                conct.setAutoCommit(false);
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setString(1, prenom);
                 stmt.setString(2, nom);
@@ -183,6 +193,7 @@ public class Employe {
         try {
             String query = "UPDATE employes SET id_manager = ? WHERE id_manager = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(query);
             stmt.setInt(1, newManagerId);
             stmt.setInt(2, oldManagerId);
@@ -206,6 +217,7 @@ public class Employe {
         try {
             String Query = "DELETE FROM employes WHERE id_employe = ?;";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -227,6 +239,7 @@ public class Employe {
         try {
             String Query = "UPDATE employes SET salaire = salaire + ? WHERE id_employe = ?";
             conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setDouble(1, amount);
             stmt.setInt(2, id);
