@@ -37,6 +37,7 @@ public class Departement {
             try {
                 String Query = "DELETE FROM departement WHERE id_departement = ?;";
                 conct = MySQLConnector.getConnection();
+                conct.setAutoCommit(false);
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
@@ -65,6 +66,7 @@ public class Departement {
             try {
                 String Query = "UPDATE  departement SET nom_departement = ? , id_localisation = ? WHERE id_departement = ?";
                 conct = MySQLConnector.getConnection();
+                conct.setAutoCommit(false);
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setString(1, nom_Departement);
                 stmt.setInt(2, id_localisation);
@@ -137,19 +139,26 @@ public class Departement {
     }
 
     public static void replaceDepartements(int oldId, int newId) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE employes SET id_departement = ? WHERE id_departement = ?";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, newId);
             stmt.setInt(2, oldId);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("les departements sont remplacés");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 

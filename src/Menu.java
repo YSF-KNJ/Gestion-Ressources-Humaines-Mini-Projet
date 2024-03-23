@@ -11,6 +11,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         char choix;
+        String option = "oui";
         do {
             
             System.out.println("Menu Principal:");
@@ -44,20 +45,21 @@ public class Menu {
                         System.out.println("e. Mettre a jour les informations sur un employe");
                         System.out.println("f. Supprimer un employe");
                         System.out.println("g. Augmenter le salaire d'un employe");
-                        System.out.println("h. add posts from file");
-                        System.out.println("i. export file");
-                        System.out.println("j. export xls");
+                        System.out.println("h. Ajouter des employes à partir un fichier TXT");
+                        System.out.println("i. Exporter les résultats vers un fichier TXT");
+                        System.out.println("j. Exporter les résultats vers un fichier XLS");
                         System.out.println("k. Quitte");
                         System.out.print("Veuillez selectionner une option: ");
                         choix = scanner.next().charAt(0);
                         System.out.println("\n");
-
+                        
 
                         switch (choix) {
                             case 'a':
                                 Employe.getEmployes();
                                 break;
                             case 'b':
+                              while (option.equals("oui")) {
                                 System.out.print("Premon de l'employe : ");
                                 String prenom1 = reader.readLine();
                                 System.out.print("Nom de l'employe: ");
@@ -80,10 +82,14 @@ public class Menu {
                                 } else if (!Departement.checkID(id_departement1)) {
                                     System.out.println("L'employe n'a pas ete ajoute car departement ID " + id_departement1 + " n'existe pas.");
                                 }
+                               System.out.print("Vous voulez ajouter un autre manager (oui/non) ?");
+                               option = scanner.next();
+                              }
 
                                 break;
 
                             case 'c':
+                              while (option.equals("oui")) {
                                 System.out.print("Premon de l'employe : ");
                                 String prenom2 = reader.readLine();
                                 System.out.print("Nom de l'employe: ");
@@ -110,6 +116,9 @@ public class Menu {
                                 } else if (!Employe.checkID(id_manager2)) {
                                     System.out.println("L'employe n'a pas ete ajoute car manager ID " + id_manager2 + " n'existe pas.");
                                 }
+                               System.out.print("Vous voulez ajouter un autre employe (oui/non) ?");
+                               option = scanner.next();
+                              }
                                 break;
                             case 'd':
                                 System.out.print("ID de l'employe :");
@@ -191,25 +200,27 @@ public class Menu {
                                 }
                                 break;
                             case 'h':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileName = reader.readLine();
                                 try {
                                     File file = new File(fileName);
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Employe.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
-                                    System.out.println("file does not exists");
+                                    System.out.println("fichier ne existe pas");
                                 }
                                 break;
                             case 'i':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameTxt = reader.readLine();
                                 Employe.exportFileTxt(fileNameTxt);
+                                System.out.println("Exportation des résultats vers le fichier TXT " + fileNameTxt + " réussie !");
                                 break;
                             case 'j':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameXls = reader.readLine();
                                 Employe.exportFileXls(fileNameXls);
+                                System.out.println("Exportation des résultats vers le fichier XLS " + fileNameXls + " réussie !");
                                 break;
                             case 'k':
                                 break;
@@ -227,9 +238,9 @@ public class Menu {
                         System.out.println("b. Ajouter un nouveau département");
                         System.out.println("c. Supprimer un département");
                         System.out.println("d. Mettre à jour les informations sur un département");
-                        System.out.println("e. add posts from file");
-                        System.out.println("f. export file");
-                        System.out.println("g. export xls");
+                        System.out.println("e. Ajouter des départements à partir un fichier TXT");
+                        System.out.println("f. Exporter les résultats vers un fichier TXT");
+                        System.out.println("g. Exporter les résultats vers un fichier XLS");
                         System.out.println("h. Quitter");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
@@ -240,6 +251,8 @@ public class Menu {
                                 Departement.getDepartement();
                                 break;
                             case 'b':
+                              
+                              while (option.equals("oui")) {
                                 System.out.print("nom de departemet : ");
                                 String nomDep = reader.readLine();
                                 System.out.print("ID de localisation :");
@@ -249,6 +262,9 @@ public class Menu {
                                 } else {
                                     System.out.println("ID de localisation n'existe pas");
                                 }
+                                System.out.print("Vous voulez ajouter un autre departemet (oui/non) ?");
+                               option = scanner.next();
+                              } 
 
                                 break;
                             case 'c':
@@ -290,25 +306,27 @@ public class Menu {
                                 }
                                 break;
                             case 'e':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileName = reader.readLine();
                                 try {
                                     File file = new File(fileName);
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Departement.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
-                                    System.out.println("file does not exists");
+                                    System.out.println("fichier ne existe pas");
                                 }
                                 break;
                             case 'f':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameTxt = reader.readLine();
                                 Departement.exportFileTxt(fileNameTxt);
+                                System.out.println("Exportation des résultats vers le fichier TXT " + fileNameTxt + " réussie !");
                                 break;
                             case 'g':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameXls = reader.readLine();
                                 Departement.exportFileXls(fileNameXls);
+                                System.out.println("Exportation des résultats vers le fichier XLS " + fileNameXls + " réussie !");
                                 break;
                             case 'h':
                                 break;
@@ -327,9 +345,9 @@ public class Menu {
                         System.out.println("b. Ajouter un nouveau poste");
                         System.out.println("c. Supprimer un poste");
                         System.out.println("d. Mettre à jour les informations sur un poste");
-                        System.out.println("e. add posts from file");
-                        System.out.println("f. export file");
-                        System.out.println("g. export xls");
+                        System.out.println("e. Ajouter des postes à partir un fichier TXT");
+                        System.out.println("f. Exporter les résultats vers un fichier TXT");
+                        System.out.println("g. Exporter les résultats vers un fichier XLS");
                         System.out.println("h. Quitter");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
@@ -341,9 +359,14 @@ public class Menu {
                                 Poste.getPostes();
                                 break;
                             case 'b':
+
+                              while (option.equals("oui")) { 
                                 System.out.print("Titre de Poste : ");
                                 String titrePost = reader.readLine();
                                 Poste.addPost(titrePost);
+                               System.out.print("Vous voulez ajouter un autre Poste (oui/non) ?");
+                               option = scanner.next();
+                              }  
                                 break;
                             case 'c':
                                 System.out.print("ID de poste :");
@@ -378,25 +401,27 @@ public class Menu {
                                 }
                                 break;
                             case 'e':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileName = reader.readLine();
                                 try {
                                     File file = new File(fileName);
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Poste.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
-                                    System.out.println("file does not exists");
+                                    System.out.println("fichier ne existe pas");
                                 }
                                 break;
                             case 'f':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameTxt = reader.readLine();
                                 Poste.exportFileTxt(fileNameTxt);
+                                System.out.println("Exportation des résultats vers le fichier TXT " + fileNameTxt + " réussie !");
                                 break;
                             case 'g':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameXls = reader.readLine();
                                 Poste.exportFileXls(fileNameXls);
+                                System.out.println("Exportation des résultats vers le fichier XLS " + fileNameXls + " réussie !");
                                 break;
                             case 'h':
                                 break;
@@ -416,9 +441,9 @@ public class Menu {
                         System.out.println("b. Ajouter un nouveau Localisation");
                         System.out.println("c. Supprimer un Localisation");
                         System.out.println("d. Mettre à jour les informations sur un Localisation");
-                        System.out.println("e. add localisations from txt file");
-                        System.out.println("f. export file");
-                        System.out.println("g. export xls");
+                        System.out.println("e. Ajouter des Localisations à partir un fichier TXT");
+                        System.out.println("f.  Exporter les résultats vers un fichier TXT");
+                        System.out.println("g. Exporter les résultats vers un fichier XLS");
                         System.out.println("h. Quitter");
                         System.out.print("Veuillez sélectionner une option: ");
                         choix = scanner.next().charAt(0);
@@ -430,11 +455,15 @@ public class Menu {
                                 Localisation.getLocalisations();
                                 break;
                             case 'b':
+                              while (option.equals("oui")) { 
                                 System.out.print("adresse de Localisation : ");
                                 String adresse1 = reader.readLine();
                                 System.out.print("ville de Localisation : ");
                                 String ville1 = reader.readLine();
                                 Localisation.addLocalisation(adresse1, ville1);
+                              System.out.print("Vous voulez ajouter un autre Localisation (oui/non) ?");
+                              option = scanner.next();
+                              }  
                                 break;
                             case 'c':
                                 System.out.print("ID de Localisation :");
@@ -471,25 +500,27 @@ public class Menu {
                                 }
                                 break;
                             case 'e':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileName = reader.readLine();
                                 try {
                                     File file = new File(fileName);
                                     FileInputStream fileInputStream = new FileInputStream(file);
                                     Localisation.addFromFile(fileInputStream);
                                 } catch (FileNotFoundException ex) {
-                                    System.out.println("file does not exists");
+                                    System.out.println("fichier ne existe pas");
                                 }
                                 break;
                             case 'f':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameTxt = reader.readLine();
                                 Localisation.exportFileTxt(fileNameTxt);
+                                System.out.println("Exportation des résultats vers le fichier TXT " + fileNameTxt + " réussie !");
                                 break;
                             case 'g':
-                                System.out.print("file name :");
+                                System.out.print("nom de fichier :");
                                 String fileNameXls = reader.readLine();
                                 Localisation.exportFileXls(fileNameXls);
+                                System.out.println("Exportation des résultats vers le fichier XLS " + fileNameXls + " réussie !");
                                 break;
                             case 'h':
                                 break;
