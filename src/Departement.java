@@ -176,7 +176,7 @@ public class Departement {
             PreparedStatement stmt = conct.prepareStatement(Query);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                String line = resultSet.getString("nom_departement") + ", " + resultSet.getString("id_localisation");
+                String line = resultSet.getString("nom_departement") + "," + resultSet.getString("id_localisation");
                 writer.write(line);
                 writer.newLine(); 
                 

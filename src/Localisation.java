@@ -168,7 +168,7 @@ public class Localisation {
             PreparedStatement stmt = conct.prepareStatement(Query);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                String line = resultSet.getString("adresse") + ", " + resultSet.getString("ville");
+                String line = resultSet.getString("adresse") + "," + resultSet.getString("ville");
                 writer.write(line);
                 writer.newLine(); 
                 
