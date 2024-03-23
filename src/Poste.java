@@ -29,54 +29,70 @@ public class Poste {
     }
 
     public static void deletePoste(int id) {
+        Connection conct = null;
         try {
-
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM poste WHERE id_poste = ?;";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Poste avec l'ID " + id + " est supprimé.");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
     }
 
     public static void updatePost(int id, String title) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE poste SET titre_poste = ? WHERE id_poste = ?";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, title.trim().toUpperCase());
             stmt.setInt(2, id);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Poste avec l'ID " + id + " a été mis à jour..");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-
     }
 
     public static void addPost(String title) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO poste (titre_poste) VALUES (?);";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, title.trim().toUpperCase());
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Poste Ajoutée");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
@@ -106,19 +122,25 @@ public class Poste {
     }
 
     public static void replacePosts(int oldId, int newId) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE employes SET id_poste = ? WHERE id_poste = ?";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, newId);
             stmt.setInt(2, oldId);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("les postes sont remplacés");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
