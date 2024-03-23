@@ -32,18 +32,24 @@ public class Localisation {
     }
 
     public static void deleteLocalisation(int id) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM localisation WHERE id_localisation = ?;";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Localisation avec l'ID " + id + " est supprimé.");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
     }
@@ -74,10 +80,11 @@ public class Localisation {
     }
 
     public static void updateLocalisation(int id, String adresse, String ville) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+
             String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_localisation = ?";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
             stmt.setString(2, ville.trim().toUpperCase());
@@ -85,45 +92,60 @@ public class Localisation {
             stmt.executeUpdate();
             conct.close();
             System.out.println("Localisation avec l'ID " + id + " a été mis à jour..");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
     public static void addLocalisation(String adresse, String ville) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO localisation (adresse, ville) VALUES (?, ?);";
-
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, adresse.trim().toUpperCase());
             stmt.setString(2, ville.trim().toUpperCase());
-
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Localisation Ajoutée");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
     public static void replaceLocalisations(int oldId, int newId) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE departement SET id_localisation = ? WHERE id_localisation = ?";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setInt(1, newId);
             stmt.setInt(2, oldId);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("les departements sont remplacés");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
