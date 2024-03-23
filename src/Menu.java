@@ -44,7 +44,10 @@ public class Menu {
                         System.out.println("e. Mettre a jour les informations sur un employe");
                         System.out.println("f. Supprimer un employe");
                         System.out.println("g. Augmenter le salaire d'un employe");
-                        System.out.println("h. Quitte r");
+                        System.out.println("h. add posts from file");
+                        System.out.println("i. export file");
+                        System.out.println("j. export xls");
+                        System.out.println("k. Quitte r");
                         System.out.print("Veuillez selectionner une option: ");
                         choix = scanner.next().charAt(0);
                         System.out.println("\n");
@@ -187,12 +190,33 @@ public class Menu {
                                     System.out.println("L'Employe avec l'ID " + id3 + " n'existe pas.");
                                 }
                                 break;
+                            case 'h':
+                                System.out.print("file name :");
+                                String fileName = reader.readLine();
+                                try {
+                                    File file = new File(fileName+".txt");
+                                    FileInputStream fileInputStream = new FileInputStream(file);
+                                    Employe.addFromFile(fileInputStream);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println("file does not exists");
+                                }
+                                break;
+                            case 'i':
+                                System.out.print("file name :");
+                                String fileNameTxt = reader.readLine();
+                                Employe.exportFileTxt(fileNameTxt);
+                                break;
+                            case 'j':
+                                System.out.print("file name :");
+                                String fileNameXls = reader.readLine();
+                                Employe.exportFileXls(fileNameXls);
+                                break;
                             default:
                                 System.out.println("Option invalide.");
                         }
 
 
-                    } while (choix != 'h');
+                    } while (choix != 'k');
                     break;
                 case '3':
                     do {
