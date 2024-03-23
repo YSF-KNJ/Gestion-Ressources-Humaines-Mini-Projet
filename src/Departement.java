@@ -33,18 +33,24 @@ public class Departement {
 
     public static void deleteDepartement(int id) {
         if (checkID(id)) {
+            Connection conct = null;
             try {
-                Class c = Class.forName("com.mysql.cj.jdbc.Driver");
                 String Query = "DELETE FROM departement WHERE id_departement = ?;";
-                Connection conct = MySQLConnector.getConnection();
+                conct = MySQLConnector.getConnection();
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
+                conct.commit();
                 conct.close();
                 System.out.println("Departement avec l'ID " + id + " est supprimé.");
-            } catch (ClassNotFoundException | SQLException e) {
-                // gestion des exceptions
-                System.out.println(e);
+            } catch (SQLException e) {
+                if (conct != null) {
+                    try {
+                        conct.rollback(); 
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
 
         } else {
@@ -55,41 +61,53 @@ public class Departement {
 
     public static void updateDepartement(int id, String nom_Departement, int id_localisation) {
         if (checkID(id)) {
+            Connection conct = null;
             try {
-                Class c = Class.forName("com.mysql.cj.jdbc.Driver");
                 String Query = "UPDATE  departement SET nom_departement = ? , id_localisation = ? WHERE id_departement = ?";
-                Connection conct = MySQLConnector.getConnection();
+                conct = MySQLConnector.getConnection();
                 PreparedStatement stmt = conct.prepareStatement(Query);
                 stmt.setString(1, nom_Departement);
                 stmt.setInt(2, id_localisation);
                 stmt.setInt(3, id);
                 stmt.executeUpdate();
+                conct.commit();
                 conct.close();
                 System.out.println("departement avec l'ID " + id + " a été mis à jour..");
-            } catch (ClassNotFoundException | SQLException e) {
-                // gestion des exceptions
-                System.out.println(e);
+            } catch (SQLException e) {
+                if (conct != null) {
+                    try {
+                        conct.rollback(); 
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         } else {
             System.out.println("departement avec l'ID " + id + " n'existe pas.");
         }
-
     }
 
     public static void addDepartement(String nom_Departement, int id_localisation) {
+        Connection conct = null;
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO departement (nom_Departement,id_localisation) VALUES (? , ? );";
-            Connection conct = MySQLConnector.getConnection();
+            conct = MySQLConnector.getConnection();
+            conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
             stmt.setString(1, nom_Departement.trim().toUpperCase());
             stmt.setInt(2, id_localisation);
             stmt.executeUpdate();
+            conct.commit();
             conct.close();
             System.out.println("Ajoutée");
-        } catch (ClassNotFoundException | SQLException e) {
-            // gestion des exceptions
-            System.out.println(e);
+        } catch (SQLException e) {
+            if (conct != null) {
+                try {
+                    conct.rollback(); 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
@@ -215,9 +233,7 @@ public class Departement {
             conct.close();
             } catch(Exception e){
                 System.out.println(e);
-            }
-        
-        
+            }    
     }
 
 }
