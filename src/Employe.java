@@ -217,7 +217,7 @@ public class Employe {
                 String nom  = parts[1];
                 String email  = parts[2];
                 String telephone = parts[3];
-                int salaire = Integer.parseInt(parts[4]);
+                double salaire = Double.parseDouble(parts[4]);
                 int id_poste = Integer.parseInt(parts[5]);
                 int id_departement = Integer.parseInt(parts[6]);
                 int id_manager = Integer.parseInt(parts[6]);
@@ -236,7 +236,7 @@ public class Employe {
             PreparedStatement stmt = conct.prepareStatement(Query);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                String line = resultSet.getString("prenom") + ", " + resultSet.getString("nom")+ ", " +resultSet.getString("email")+ ", " +resultSet.getString("telephone")+ ", " +resultSet.getString("salaire")+ ", " +resultSet.getString("id_poste")+ ", " +resultSet.getString("id_departement")+ ", " +resultSet.getString("id_manager");
+                String line = resultSet.getString("prenom") + "," + resultSet.getString("nom")+ "," +resultSet.getString("email")+ "," +resultSet.getString("telephone")+ "," +resultSet.getString("salaire")+ "," +resultSet.getString("id_poste")+ "," +resultSet.getString("id_departement")+ "," +resultSet.getString("id_manager");
                 writer.write(line);
                 writer.newLine(); 
                 
