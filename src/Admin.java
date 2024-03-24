@@ -16,13 +16,13 @@ class Admin {
                 rowCount = resultSet.getInt("num");
             }
             conct.close();
-            return rowCount == 0; 
+            return rowCount == 0;
         } catch (SQLException e) {
             System.out.println(e);
         }
         return false;
     }
-    
+
     public static void addAdmin(String login, String password) throws ClassNotFoundException {
         Connection conct = null;
         try {
@@ -31,8 +31,8 @@ class Admin {
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
             PreparedStatement stmt = conct.prepareStatement(Query);
-            stmt.setString(1,login);
-            stmt.setString(2,password);
+            stmt.setString(1, login);
+            stmt.setString(2, password);
             stmt.executeUpdate();
             conct.commit();
             conct.close();

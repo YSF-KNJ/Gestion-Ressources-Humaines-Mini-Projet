@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gestion-Ressources-Humaines-Mini-Projet">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Gestion-Ressources-Humaines-Mini-Projet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

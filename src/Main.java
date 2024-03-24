@@ -12,13 +12,13 @@ public class Main {
         Createtables.createtables();
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        if (Admin.CheckEmpty()){
+        if (Admin.CheckEmpty()) {
             System.out.print("nouvelle login : ");
             String newLogin = reader.readLine();
             newLogin.replace("'", "\"");
             System.out.print("nouvelle password : ");
             String newPassword = reader.readLine();
-            Admin.addAdmin(newLogin,newPassword);
+            Admin.addAdmin(newLogin, newPassword);
         }
         System.out.print("login : ");
         String login = reader.readLine();
