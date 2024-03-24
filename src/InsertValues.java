@@ -4,7 +4,7 @@ import java.sql.Statement;
 public class InsertValues {
     public static void insert() {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conct = MySQLConnector.getConnection();
             Statement stmt = conct.createStatement();
 

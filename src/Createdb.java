@@ -12,6 +12,7 @@ public class Createdb {
 
     public static void createdb() {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conct = DriverManager.getConnection(conString, nomConnexion, motDePasse);
             Statement stmt = conct.createStatement();
             stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS HR;");

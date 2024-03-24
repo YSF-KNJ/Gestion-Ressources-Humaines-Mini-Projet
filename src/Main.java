@@ -7,11 +7,19 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Createdb.createdb();
         Createtables.createtables();
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        if (Admin.CheckEmpty()){
+            System.out.print("nouvelle login : ");
+            String newLogin = reader.readLine();
+            newLogin.replace("'", "\"");
+            System.out.print("nouvelle password : ");
+            String newPassword = reader.readLine();
+            Admin.addAdmin(newLogin,newPassword);
+        }
         System.out.print("login : ");
         String login = reader.readLine();
         login.replace("'", "\"");

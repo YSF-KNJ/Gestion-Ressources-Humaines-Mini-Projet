@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Localisation {
     public static boolean checkID(int id) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT COUNT(*) AS count FROM localisation WHERE id_localisation = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -32,9 +32,10 @@ public class Localisation {
         return false;
     }
 
-    public static void deleteLocalisation(int id) {
+    public static void deleteLocalisation(int id) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM localisation WHERE id_localisation = ?;";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -58,7 +59,7 @@ public class Localisation {
 
     public static void getLocalisations() {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM localisation";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -81,10 +82,10 @@ public class Localisation {
 
     }
 
-    public static void updateLocalisation(int id, String adresse, String ville) {
+    public static void updateLocalisation(int id, String adresse, String ville) throws ClassNotFoundException {
         Connection conct = null;
         try {
-
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE localisation SET adresse = ?,ville = ? WHERE id_localisation = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -106,9 +107,10 @@ public class Localisation {
         }
     }
 
-    public static void addLocalisation(String adresse, String ville) {
+    public static void addLocalisation(String adresse, String ville) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO localisation (adresse, ville) VALUES (?, ?);";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -130,9 +132,10 @@ public class Localisation {
         }
     }
 
-    public static void replaceLocalisations(int oldId, int newId) {
+    public static void replaceLocalisations(int oldId, int newId) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE departement SET id_localisation = ? WHERE id_localisation = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -156,7 +159,7 @@ public class Localisation {
 
     public static boolean isLocalisationOccupied(int id) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT COUNT(*) AS count FROM departement WHERE id_localisation = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -174,7 +177,7 @@ public class Localisation {
         return false;
     }
 
-    public static void addFromFile(FileInputStream file) {
+    public static void addFromFile(FileInputStream file) throws ClassNotFoundException {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -189,7 +192,7 @@ public class Localisation {
     public static void exportFileTxt(String fileName) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM localisation";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -209,7 +212,7 @@ public class Localisation {
 
     public static void exportFileXls(String fileName) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM localisation";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);

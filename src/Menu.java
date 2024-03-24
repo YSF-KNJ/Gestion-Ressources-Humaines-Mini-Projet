@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Menu {
-    public void run() throws IOException {
+    public void run() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         char choix;
@@ -11,7 +11,7 @@ public class Menu {
 
             System.out.println("Menu Principal:");
             System.out.println("--------------");
-            System.out.println("1. insérer cinq pseudo-valeurs pour tester le programme");
+            System.out.println("1. Insérer cinq pseudo-valeurs pour tester le programme");
             System.out.println("2. Gérer les Employés");
             System.out.println("3. Gérer les Départements");
             System.out.println("4. Gérer les Postes");
@@ -51,6 +51,7 @@ public class Menu {
                                 Employe.getEmployes();
                                 break;
                             case 'b':
+                                option = "oui";
                                 while (option.equals("oui")) {
                                     System.out.print("Premon de l'employe : ");
                                     String prenom1 = reader.readLine();
@@ -77,10 +78,10 @@ public class Menu {
                                     System.out.print("Vous voulez ajouter un autre manager (oui/non) ?");
                                     option = scanner.next();
                                 }
-
                                 break;
 
                             case 'c':
+                                option = "oui";
                                 while (option.equals("oui")) {
                                     System.out.print("Premon de l'employe : ");
                                     String prenom2 = reader.readLine();
@@ -243,7 +244,7 @@ public class Menu {
                                 Departement.getDepartement();
                                 break;
                             case 'b':
-
+                                option = "oui";
                                 while (option.equals("oui")) {
                                     System.out.print("nom de departemet : ");
                                     String nomDep = reader.readLine();
@@ -351,7 +352,7 @@ public class Menu {
                                 Poste.getPostes();
                                 break;
                             case 'b':
-
+                                option = "oui";
                                 while (option.equals("oui")) {
                                     System.out.print("Titre de Poste : ");
                                     String titrePost = reader.readLine();
@@ -447,6 +448,7 @@ public class Menu {
                                 Localisation.getLocalisations();
                                 break;
                             case 'b':
+                                option = "oui";
                                 while (option.equals("oui")) {
                                     System.out.print("adresse de Localisation : ");
                                     String adresse1 = reader.readLine();

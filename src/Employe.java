@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Employe {
     public static boolean checkID(int id) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT COUNT(*) AS count FROM employes WHERE id_employe = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -33,7 +33,7 @@ public class Employe {
 
     public static void getEmployes() {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM employes";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -53,9 +53,10 @@ public class Employe {
         }
     }
 
-    public static void addManger(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement) {
+    public static void addManger(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement) VALUES (?, ?, ?, ?, ?, ?, ?)";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -81,9 +82,10 @@ public class Employe {
         }
     }
 
-    public static void addEmploye(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) {
+    public static void addEmploye(String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "INSERT INTO employes (prenom, nom, email, telephone, salaire, id_poste, id_departement, id_manager) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -112,7 +114,7 @@ public class Employe {
 
     public static void searchEmploye(int id) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM employes WHERE id_employe = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -135,10 +137,11 @@ public class Employe {
         }
     }
 
-    public static void updateEmploye(int id, String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) {
+    public static void updateEmploye(int id, String prenom, String nom, String email, String telephone, double salaire, int id_poste, int id_departement, int id_manager) throws ClassNotFoundException {
         Connection conct = null;
         if (checkID(id)) {
             try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 String Query = "UPDATE employes SET prenom = ?, nom = ?, email = ?, telephone = ?, salaire = ?, id_poste = ?, id_departement = ?, id_manager = ? WHERE id_employe = ?";
                 conct = MySQLConnector.getConnection();
                 conct.setAutoCommit(false);
@@ -170,8 +173,9 @@ public class Employe {
 
     }
 
-    public static boolean isManager(int id) {
+    public static boolean isManager(int id) throws ClassNotFoundException {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String query = "SELECT COUNT(*) AS count FROM employes WHERE id_manager = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(query);
@@ -188,9 +192,10 @@ public class Employe {
         return false;
     }
 
-    public static void replaceManager(int newManagerId, int oldManagerId) {
+    public static void replaceManager(int newManagerId, int oldManagerId) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String query = "UPDATE employes SET id_manager = ? WHERE id_manager = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -212,9 +217,10 @@ public class Employe {
         }
     }
 
-    public static void deleteEmploye(int id) {
+    public static void deleteEmploye(int id) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM employes WHERE id_employe = ?;";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -234,9 +240,10 @@ public class Employe {
         }
     }
 
-    public static void increaseSalary(int id, double amount) {
+    public static void increaseSalary(int id, double amount) throws ClassNotFoundException {
         Connection conct = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE employes SET salaire = salaire + ? WHERE id_employe = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -257,7 +264,7 @@ public class Employe {
         }
     }
 
-    public static void addFromFile(FileInputStream file) {
+    public static void addFromFile(FileInputStream file) throws ClassNotFoundException {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -279,7 +286,7 @@ public class Employe {
     public static void exportFileTxt(String fileName) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM employes";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -299,7 +306,7 @@ public class Employe {
 
     public static void exportFileXls(String fileName) {
         try {
-            Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM employes";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
