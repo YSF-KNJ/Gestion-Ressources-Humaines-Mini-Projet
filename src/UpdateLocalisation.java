@@ -12,7 +12,7 @@ public class UpdateLocalisation extends BaseFrame {
     public UpdateLocalisation() {
         this.setTitle("Mettre à jour ");
         this.setLocationRelativeTo(null);
-        JLabel titleLabel = new JLabel("Mettre à jour les informations d'une departement");
+        JLabel titleLabel = new JLabel("Mettre à jour les informations d'une localisation");
         titleLabel.setBounds(200, 30, 450, 25);
 
         NumberField idTextField = new NumberField();
@@ -21,7 +21,7 @@ public class UpdateLocalisation extends BaseFrame {
 
 
 
-        JLabel idLabel = new JLabel("dep ID:");
+        JLabel idLabel = new JLabel("local ID:");
         JLabel adresseLabel = new JLabel("adresse:");
         JLabel villeLabel = new JLabel("ville:");
 
