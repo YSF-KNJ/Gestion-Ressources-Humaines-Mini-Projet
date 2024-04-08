@@ -55,8 +55,8 @@ public class EmployeesFrame extends BaseFrame {
         button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImportTxt importTxt = new ImportTxt();
-                importTxt.importTxt();
+                ImportEmpTxt importEmpTxt = new ImportEmpTxt();
+                importEmpTxt.importTxt();
             }
         });
         ButtonCard button8 = new ButtonCard("Exporter", "resources/xls.png", 420, 400, new ExportEmploye(), 180, 100);

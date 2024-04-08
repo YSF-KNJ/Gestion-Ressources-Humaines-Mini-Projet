@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class ImportTxt extends JFileChooser {
+public class ImportEmpTxt extends JFileChooser {
     public void importTxt() {
         int option = showOpenDialog(null);
         if (option == JFileChooser.APPROVE_OPTION) {

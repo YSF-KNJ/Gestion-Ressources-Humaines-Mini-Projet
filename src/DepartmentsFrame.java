@@ -26,7 +26,14 @@ public class DepartmentsFrame extends BaseFrame {
         ButtonCard button3 = new ButtonCard("Supprimer", "resources/remove.png", 550, 180, new BaseFrame(), 200, 100);
 
         ButtonCard button4 = new ButtonCard("Mettre à jour", "resources/update.png", 50, 320, new BaseFrame(), 200, 100);
-        ButtonCard button5 = new ButtonCard("Importer", "resources/txt.png", 300, 320, new BaseFrame(), 200, 100);
+        ButtonCard button5 = new ButtonCard("Importer", "resources/txt.png", 300, 320, 200, 100);
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImportDepTxt importDepTxt = new ImportDepTxt();
+                importDepTxt.importTxt();
+            }
+        });
         ButtonCard button6 = new ButtonCard("Exporter", "resources/xls.png", 550, 320, new BaseFrame(), 200, 100);
         HomeButton button9 = new HomeButton(this);
 

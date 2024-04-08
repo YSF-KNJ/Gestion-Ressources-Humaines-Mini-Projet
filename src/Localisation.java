@@ -202,7 +202,7 @@ public class Localisation {
         return false;
     }
 
-    public static void addFromFile(FileInputStream file) throws ClassNotFoundException {
+    public static void addFromFile(FileInputStream file) {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

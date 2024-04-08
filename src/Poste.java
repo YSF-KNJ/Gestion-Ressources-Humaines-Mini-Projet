@@ -199,7 +199,7 @@ public class Poste {
         return false;
     }
 
-    public static void addFromFile(FileInputStream file) throws ClassNotFoundException {
+    public static void addFromFile(FileInputStream file) {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -210,7 +210,6 @@ public class Poste {
     public static void exportFileTxt(String fileName) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM poste";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
