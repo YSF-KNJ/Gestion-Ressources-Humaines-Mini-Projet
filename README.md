@@ -2,8 +2,7 @@
 
 Ce projet est réalisé dans le cadre du mini-projet 1 pour le cours de Architecture Distribuée, sous la supervision du professeur Otman ABDOUN. Il vise à concevoir une application de gestion des ressources humaines en utilisant Java et une base de données relationnelle.
 
-[![YouTube Video](http://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE "YouTube Video Title")
-[Watch the YouTube video]([http://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE](https://youtu.be/i_m37hVnS6U))
+[![YouTube Video](https://i3.ytimg.com/vi/i_m37hVnS6U/maxresdefault.jpg)](https://youtu.be/i_m37hVnS6U)
 
 
 ## Membres du projet
