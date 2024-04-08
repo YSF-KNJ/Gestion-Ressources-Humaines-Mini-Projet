@@ -209,54 +209,7 @@ class UpdateEmploye extends BaseFrame {
                 }
             }
         });
-
-        /*updateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (idTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() ||
-                            lastNameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() ||
-                            phoneTextField.getText().isEmpty() || salaryTextField.getText().isEmpty() ||
-                            postIdTextField.getText().isEmpty() || deptIdTextField.getText().isEmpty() ||
-                            managerIdTextField.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.");
-                        return;
-                    }
-
-                    int id_pos_int = Integer.parseInt(postIdTextField.getText());
-                    int id_dep_int = Integer.parseInt(deptIdTextField.getText());
-                    int id_man_int = Integer.parseInt(managerIdTextField.getText());
-
-                    if (Poste.checkID(id_pos_int) && Departement.checkID(id_dep_int) && Employe.checkID(id_man_int)) {
-                        Employe.updateEmploye(Integer.parseInt(idTextField.getText()), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), phoneTextField.getText(), Double.parseDouble(salaryTextField.getText()), id_pos_int, id_dep_int, id_man_int);
-                        JOptionPane.showMessageDialog(null, "Les informations de l'employe ont été mises à jour avec succès");
-                        idTextField.setText("");
-                        firstNameTextField.setText("");
-                        lastNameTextField.setText("");
-                        emailTextField.setText("");
-                        phoneTextField.setText("");
-                        salaryTextField.setText("");
-                        postIdTextField.setText("");
-                        deptIdTextField.setText("");
-                        managerIdTextField.setText("");
-                        dispose();
-                    } else {
-                        if (!Poste.checkID(id_pos_int)) {
-                            JOptionPane.showMessageDialog(null, "La mise à jour de l'employé n'a pas été effectuée, le poste ID " + id_pos_int + " n'existe pas.");
-                        } else if (!Departement.checkID(id_dep_int)) {
-                            JOptionPane.showMessageDialog(null, "La mise à jour de l'employé n'a pas été effectuée, le département ID " + id_dep_int + " n'existe pas.");
-                        } else if (!Employe.checkID(id_man_int)) {
-                            JOptionPane.showMessageDialog(null, "La mise à jour de l'employé n'a pas été effectuée, le manager ID " + id_man_int + " n'existe pas.");
-                        }
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Entrée invalide. Veuillez entrer des chiffres valides.");
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-                }
-            }
-        });*/
-
+        
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
