@@ -209,7 +209,7 @@ public class Poste {
 
     public static void exportFileTxt(String fileName) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             String Query = "SELECT * FROM poste";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
@@ -243,7 +243,7 @@ public class Poste {
                 cell.setCellValue(resultSet.getString("titre_poste"));
             }
 
-            FileOutputStream fileOut = new FileOutputStream(fileName.trim() + ".xls");
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim());
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();

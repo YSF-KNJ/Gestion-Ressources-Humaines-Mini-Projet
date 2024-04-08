@@ -6,15 +6,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ExportDepartement extends BaseFrame {
-    ButtonCard btnXls = new ButtonCard("Exporter XLS", "resources/xls.png", 180, 220, 200, 100);
-    ButtonCard btnTxt = new ButtonCard("Exporter  Txt", "resources/txt.png", 420, 220, 200, 100);
+    ButtonCard btnXls = new ButtonCard("Exporter XLS", "resources/xls.png", 130, 220, 200, 100);
+    ButtonCard btnTxt = new ButtonCard("Exporter  Txt", "resources/txt.png", 370, 220, 200, 100);
 
     public ExportDepartement() {
         JLabel label = new JLabel("Export Departement Table", JLabel.CENTER);
-        label.setBounds(250, 100, 300, 25);
+        this.setSize(700,500);
+        label.setBounds(200, 100, 300, 25);
         add(label);
         setLayout(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("HR");
         add(btnXls);
@@ -41,6 +41,7 @@ public class ExportDepartement extends BaseFrame {
             String file = path + "\\" + name;
             Departement.exportFileXls(file);
             JOptionPane.showMessageDialog(ExportDepartement.this, "Exportation XLS réussie..");
+            dispose();
         }
 
     }
@@ -59,6 +60,7 @@ public class ExportDepartement extends BaseFrame {
             String file = path + "\\" + name;
             Departement.exportFileTxt(file);
             JOptionPane.showMessageDialog(ExportDepartement.this, "Exportation TXT réussie.");
+            dispose();
         }
     }
 

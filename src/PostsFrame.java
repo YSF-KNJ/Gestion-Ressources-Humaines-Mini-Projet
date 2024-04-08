@@ -35,7 +35,7 @@ public class PostsFrame extends BaseFrame {
                 importPosTxt.importTxt();
             }
         });
-        ButtonCard button6 = new ButtonCard("Exporter", "resources/xls.png", 550, 320, new BaseFrame(), 200, 100);
+        ButtonCard button6 = new ButtonCard("Exporter", "resources/xls.png", 550, 320, new ExportPoste(), 200, 100);
         HomeButton button7 = new HomeButton(this);
 
         this.add(titleLabel);

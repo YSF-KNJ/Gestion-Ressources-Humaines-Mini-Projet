@@ -34,7 +34,7 @@ public class DepartmentsFrame extends BaseFrame {
                 importDepTxt.importTxt();
             }
         });
-        ButtonCard button6 = new ButtonCard("Exporter", "resources/xls.png", 550, 320, new BaseFrame(), 200, 100);
+        ButtonCard button6 = new ButtonCard("Exporter", "resources/xls.png", 550, 320, new ExportDepartement(), 200, 100);
         HomeButton button9 = new HomeButton(this);
 
         this.add(titleLabel);

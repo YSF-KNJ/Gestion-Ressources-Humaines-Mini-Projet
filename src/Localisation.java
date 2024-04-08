@@ -215,7 +215,7 @@ public class Localisation {
 
     public static void exportFileTxt(String fileName) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM localisation";
             Connection conct = MySQLConnector.getConnection();
@@ -254,7 +254,7 @@ public class Localisation {
 
             }
 
-            FileOutputStream fileOut = new FileOutputStream(fileName.trim() + ".xls");
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim());
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();

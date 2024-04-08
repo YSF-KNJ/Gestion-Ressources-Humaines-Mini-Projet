@@ -220,7 +220,7 @@ public class Departement {
 
     public static void exportFileTxt(String fileName) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT * FROM departement";
             Connection conct = MySQLConnector.getConnection();
@@ -259,7 +259,7 @@ public class Departement {
 
             }
 
-            FileOutputStream fileOut = new FileOutputStream(fileName.trim() + ".xls");
+            FileOutputStream fileOut = new FileOutputStream(fileName.trim());
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();
