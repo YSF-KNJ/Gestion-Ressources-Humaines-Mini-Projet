@@ -33,7 +33,15 @@ public class PostsFrame extends BaseFrame {
             }
         });
 
-        ButtonCard button4 = new ButtonCard("Mettre à jour", "resources/update.png", 50, 320, new BaseFrame(), 200, 100);
+        ButtonCard button4 = new ButtonCard("Mettre à jour", "resources/update.png", 50, 320, 200, 100);
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpdatePoste updateposte = new UpdatePoste();
+                updateposte.setVisible(true);
+            }
+        });
+
         ButtonCard button5 = new ButtonCard("Importer", "resources/txt.png", 300, 320, 200, 100);
         button5.addActionListener(new ActionListener() {
             @Override

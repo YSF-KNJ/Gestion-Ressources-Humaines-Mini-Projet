@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1f331cc-25cc-41ef-b8c2-349b7592e737" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DepartmentsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DepartmentsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalisationFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalisationFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PostsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PostsFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +117,7 @@
       <workItem from="1712557441012" duration="1596000" />
       <workItem from="1712563390341" duration="225000" />
       <workItem from="1712569740751" duration="186000" />
-      <workItem from="1712616518345" duration="741000" />
+      <workItem from="1712616518345" duration="2118000" />
     </task>
     <servers />
   </component>
