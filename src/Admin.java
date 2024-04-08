@@ -4,9 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 class Admin {
-    public static boolean CheckEmpty() throws ClassNotFoundException {
+    public static boolean CheckEmpty() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT COUNT(*) AS num FROM admin";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);
