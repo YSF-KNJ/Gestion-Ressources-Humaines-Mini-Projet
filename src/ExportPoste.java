@@ -11,7 +11,7 @@ public class ExportPoste extends BaseFrame {
 
     public ExportPoste() {
         JLabel label = new JLabel("Export Postes Table", JLabel.CENTER);
-        this.setSize(700,500);
+        this.setSize(700, 500);
         label.setBounds(200, 100, 300, 25);
         add(label);
         setLayout(null);

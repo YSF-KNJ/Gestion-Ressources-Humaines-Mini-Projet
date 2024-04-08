@@ -32,10 +32,9 @@ public class Localisation {
         return false;
     }
 
-    public static void deleteLocalisation(int id) throws ClassNotFoundException {
+    public static void deleteLocalisation(int id) {
         Connection conct = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM localisation WHERE id_localisation = ?;";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -159,10 +158,9 @@ public class Localisation {
         }
     }
 
-    public static void replaceLocalisations(int oldId, int newId) throws ClassNotFoundException {
+    public static void replaceLocalisations(int oldId, int newId) {
         Connection conct = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE departement SET id_localisation = ? WHERE id_localisation = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);

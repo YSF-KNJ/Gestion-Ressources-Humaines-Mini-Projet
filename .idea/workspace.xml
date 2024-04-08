@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1f331cc-25cc-41ef-b8c2-349b7592e737" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SupprimerDepartement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SupprimerLocalisation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SupprimerPoste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Departement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Departement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/DepartmentsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/DepartmentsFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/EmployeesFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/EmployeesFrame$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ExportEmploye$MyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ExportEmploye$MyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ExportEmploye.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ExportEmploye.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Localisation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Localisation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/LocalisationFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/LocalisationFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Poste.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Poste.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/PostsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/PostsFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Departement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Departement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DepartmentsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DepartmentsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExportDepartement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExportDepartement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExportEmploye.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExportEmploye.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExportLocalisation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExportLocalisation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExportPoste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExportPoste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImportLocTxt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImportLocTxt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Localisation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Localisation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalisationFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalisationFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Poste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Poste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PostsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PostsFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,21 +58,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Youssef/Documents/NetBeansProjects/Gestion-Ressources-Humaines-Mini-Projet",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Youssef/Documents/NetBeansProjects/Gestion-Ressources-Humaines-Mini-Projet&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="ExportEmploye" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ExportEmploye" />
@@ -71,9 +95,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Gestion-Ressources-Humaines-Mini-Projet" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +136,7 @@
       <workItem from="1712504940891" duration="40820000" />
       <workItem from="1712557441012" duration="1596000" />
       <workItem from="1712563390341" duration="225000" />
+      <workItem from="1712569740751" duration="186000" />
     </task>
     <servers />
   </component>

@@ -24,7 +24,14 @@ public class PostsFrame extends BaseFrame {
             }
         });
         ButtonCard button2 = new ButtonCard("Ajouter", "resources/add.png", 300, 180, new AjouterPoste(), 200, 100);
-        ButtonCard button3 = new ButtonCard("Supprimer", "resources/remove.png", 550, 180, new BaseFrame(), 200, 100);
+        ButtonCard button3 = new ButtonCard("Supprimer", "resources/remove.png", 550, 180, 200, 100);
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SupprimerPoste supprimerposte = new SupprimerPoste();
+                supprimerposte.setVisible(true);
+            }
+        });
 
         ButtonCard button4 = new ButtonCard("Mettre à jour", "resources/update.png", 50, 320, new BaseFrame(), 200, 100);
         ButtonCard button5 = new ButtonCard("Importer", "resources/txt.png", 300, 320, 200, 100);

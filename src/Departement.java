@@ -31,11 +31,10 @@ public class Departement {
         return false;
     }
 
-    public static void deleteDepartement(int id) throws ClassNotFoundException {
+    public static void deleteDepartement(int id) {
         if (checkID(id)) {
             Connection conct = null;
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 String Query = "DELETE FROM departement WHERE id_departement = ?;";
                 conct = MySQLConnector.getConnection();
                 conct.setAutoCommit(false);
@@ -162,10 +161,9 @@ public class Departement {
     }
 
 
-    public static void replaceDepartements(int oldId, int newId) throws ClassNotFoundException {
+    public static void replaceDepartements(int oldId, int newId) {
         Connection conct = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE employes SET id_departement = ? WHERE id_departement = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -187,9 +185,8 @@ public class Departement {
         }
     }
 
-    public static boolean isDepartmentOccupied(int id) throws ClassNotFoundException {
+    public static boolean isDepartmentOccupied(int id) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "SELECT COUNT(*) AS count FROM employes WHERE id_departement = ?";
             Connection conct = MySQLConnector.getConnection();
             PreparedStatement stmt = conct.prepareStatement(Query);

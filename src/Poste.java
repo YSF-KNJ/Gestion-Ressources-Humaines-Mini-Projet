@@ -31,10 +31,9 @@ public class Poste {
         return false;
     }
 
-    public static void deletePoste(int id) throws ClassNotFoundException {
+    public static void deletePoste(int id) {
         Connection conct = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "DELETE FROM poste WHERE id_poste = ?;";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
@@ -156,10 +155,9 @@ public class Poste {
     }
 
 
-    public static void replacePosts(int oldId, int newId) throws ClassNotFoundException {
+    public static void replacePosts(int oldId, int newId) {
         Connection conct = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String Query = "UPDATE employes SET id_poste = ? WHERE id_poste = ?";
             conct = MySQLConnector.getConnection();
             conct.setAutoCommit(false);
